@@ -1,0 +1,43 @@
+name: Actualizar Dashboard Fullmotos
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Todos los lunes a las 6am UTC (1am Ecuador)
+  workflow_dispatch:       # También se puede correr manualmente desde GitHub
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install pandas openpyxl requests
+
+      - name: Actualizar dashboard
+        env:
+          MS_CLIENT_ID: ${{ secrets.MS_CLIENT_ID }}
+          MS_CLIENT_SECRET: ${{ secrets.MS_CLIENT_SECRET }}
+          MS_TENANT_ID: ${{ secrets.MS_TENANT_ID }}
+          MS_REFRESH_TOKEN: ${{ secrets.MS_REFRESH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python update_dashboard.py
+
+      - name: Guardar nuevo refresh token
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f new_refresh_token.txt ]; then
+            NEW_TOKEN=$(cat new_refresh_token.txt)
+            if [ -n "$NEW_TOKEN" ]; then
+              gh secret set MS_REFRESH_TOKEN --body "$NEW_TOKEN"
+              echo "Refresh token actualizado"
+            fi
+          fi
