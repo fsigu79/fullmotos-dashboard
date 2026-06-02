@@ -367,62 +367,60 @@ new Chart(document.getElementById('chartProd'),{
   }
 });
 
-// --- CHART: LTV COMPARACION (3 datasets horizontales separados) ---
+// --- CHART: LTV COMPARACION ---
 new Chart(document.getElementById('chartLTVcomp'),{
-  type:'bar',indexAxis:'y',
+  type:'bar',
   data:{
     labels:clientNames,
     datasets:[
-      {label:'LTV básico',data:ltvBasico,backgroundColor:'#B5D4F4',borderRadius:3,borderSkipped:false},
-      {label:'LTV real',data:ltvReal,backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false},
-      {label:'LTV 3 años',data:ltv3anos,backgroundColor:'#1D9E75',borderRadius:3,borderSkipped:false}
+      {label:'LTV básico (ventas/año)',data:ltvBasico,backgroundColor:'#B5D4F4',borderRadius:3},
+      {label:'LTV real (margen/año)',data:ltvReal,backgroundColor:'#185FA5',borderRadius:3},
+      {label:'LTV 3 años',data:ltv3anos,backgroundColor:'#1D9E75',borderRadius:3}
     ]
   },
   options:{
+    indexAxis:'y',
     responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmtX(ctx.parsed.x)}}},
     scales:{
-      x:{min:0,grid:{color:gC},ticks:{color:tC,callback:fmtX}},
-      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
+      x:{type:'linear',min:0,max:4500000,grid:{color:gC},ticks:{color:tC,stepSize:1000000,callback:v=>fmtX(v)}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:10}}}
     }
   }
 });
 
 // --- CHART: MARGEN EN $ ---
 new Chart(document.getElementById('chartMargenD'),{
-  type:'bar',indexAxis:'y',
+  type:'bar',
   data:{
     labels:clientNames,
     datasets:[{label:'Margen $',data:margenD,backgroundColor:margenColors,borderRadius:3}]
   },
   options:{
+    indexAxis:'y',
     responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmtX(ctx.parsed.x)+' ('+margenP[ctx.dataIndex]+'%)'}}},
     scales:{
-      x:{min:0,grid:{color:gC},ticks:{color:tC,callback:fmtX}},
-      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
+      x:{type:'linear',min:0,max:1200000,grid:{color:gC},ticks:{color:tC,stepSize:200000,callback:v=>fmtX(v)}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:10}}}
     }
   }
 });
 
 // --- CHART: MARGEN % ---
 new Chart(document.getElementById('chartMargenP'),{
-  type:'bar',indexAxis:'y',
+  type:'bar',
   data:{
     labels:clientNames,
-    datasets:[{
-      label:'% margen',
-      data:margenP,
-      backgroundColor:margenColors,
-      borderRadius:3
-    }]
+    datasets:[{label:'% margen',data:margenP,backgroundColor:margenColors,borderRadius:3}]
   },
   options:{
+    indexAxis:'y',
     responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.x}% de margen`}}},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.x.toFixed(1)}% de margen`}}},
     scales:{
-      x:{min:0,max:40,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},
-      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
+      x:{type:'linear',min:0,max:40,grid:{color:gC},ticks:{color:tC,stepSize:5,callback:v=>v+'%'}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:10}}}
     }
   }
 });
