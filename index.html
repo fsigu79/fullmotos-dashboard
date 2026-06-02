@@ -11,16 +11,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-icon{width:36px;height:36px;background:#185FA5;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
-.logo-text{font-size:16px;font-weight:600;color:#1a1a2e}
-.logo-sub{font-size:11px;color:#6b7280}
+.logo-text{font-size:16px;font-weight:600}.logo-sub{font-size:11px;color:#6b7280}
+.header-right{display:flex;align-items:center;gap:8px}
 .updated{font-size:11px;color:#6b7280;background:#f3f4f6;padding:4px 10px;border-radius:20px}
+.btn-wa{font-size:11px;background:#25D366;color:#fff;padding:5px 12px;border-radius:20px;text-decoration:none;font-weight:600}
 .main{max-width:1100px;margin:0 auto;padding:1.5rem}
 .tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap;background:#fff;padding:.75rem 1rem;border-radius:12px;border:1px solid #e5e7eb}
 .tab{font-size:12px;padding:6px 14px;border:1px solid #e5e7eb;border-radius:20px;cursor:pointer;background:#fff;color:#6b7280;font-weight:500;transition:all .15s}
 .tab:hover{background:#f3f4f6}
 .tab.active{background:#185FA5;color:#fff;border-color:#185FA5}
 .section{display:none}.section.active{display:block}
-.section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;margin:0 0 .75rem}
+.slabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;margin:0 0 .75rem}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.25rem}
 .kpi{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.9rem 1rem}
 .kpi-label{font-size:11px;color:#6b7280;margin-bottom:6px}
@@ -30,25 +31,26 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
 .kpi.green{border-top:3px solid #1D9E75}.kpi.green .kpi-value{color:#1D9E75}
 .kpi.amber{border-top:3px solid #D97706}.kpi.amber .kpi-value{color:#D97706}
 .kpi.coral{border-top:3px solid #DC2626}.kpi.coral .kpi-value{color:#DC2626}
+.kpi.purple{border-top:3px solid #534AB7}.kpi.purple .kpi-value{color:#534AB7}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
 .card-title{font-size:13px;font-weight:600;margin-bottom:1rem;color:#1a1a2e}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:11px;color:#6b7280}
 .ldot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
-.client-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f3f4f6}
-.client-row:last-child{border:none}
+.crow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f3f4f6}
+.crow:last-child{border:none}
 .crank{font-size:11px;font-weight:600;color:#9ca3af;width:18px;text-align:center}
 .cavatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
 .cinfo{flex:1;min-width:0}
-.cname{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#1a1a2e}
+.cname{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cmeta{font-size:11px;color:#9ca3af}
 .cbar-bg{background:#f3f4f6;border-radius:4px;height:5px;margin-top:4px}
 .cbar-fill{height:5px;border-radius:4px;background:#185FA5}
 .cval{text-align:right;flex-shrink:0}
-.ctotal{font-size:13px;font-weight:700;color:#1a1a2e}
+.ctotal{font-size:13px;font-weight:700}
 .cltv{font-size:11px;color:#9ca3af}
 .prow{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.plabel{font-size:11px;width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#374151}
+.plabel{font-size:11px;width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pbar-wrap{flex:1;background:#f3f4f6;border-radius:4px;height:20px;overflow:hidden}
 .pbar-inner{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px}
 .ppct{font-size:10px;font-weight:700;color:#fff}
@@ -61,27 +63,33 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
 .rtitle{font-size:12px;font-weight:600;margin-bottom:4px}
 .rtext{font-size:11px;line-height:1.5}
 .rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.alert-box{background:#fffbeb;border-left:3px solid #d97706;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:1rem}
+.alert-box .at{font-size:12px;font-weight:600;color:#92400e;margin-bottom:3px}
+.alert-box .ab{font-size:11px;color:#b45309;line-height:1.5}
+.insight-box{background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:.6rem}
+.insight-box .it{font-size:12px;font-weight:600;color:#15803d;margin-bottom:3px}
+.insight-box .ib{font-size:11px;color:#166534;line-height:1.5}
 .footer{text-align:center;padding:2rem 1rem;font-size:11px;color:#9ca3af}
 @media(max-width:600px){.two-col{grid-template-columns:1fr}.rgrid{grid-template-columns:1fr}.kpi-value{font-size:18px}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">
     <div class="logo-icon">🏍️</div>
-    <div>
-      <div class="logo-text">Fullmotos Dashboard</div>
-      <div class="logo-sub">Inteligencia de negocios 2025</div>
-    </div>
+    <div><div class="logo-text">Fullmotos Dashboard</div><div class="logo-sub">Inteligencia de negocios 2025</div></div>
   </div>
-  <div style="display:flex;align-items:center;gap:8px"><div class="updated">Actualizado: Jun 2026</div><a href="https://wa.me/593998890863?text=Hola%2C%20por%20favor%20actualiza%20el%20dashboard%20de%20Fullmotos%20con%20los%20datos%20m%C3%A1s%20recientes%20del%20Excel%20en%20OneDrive" target="_blank" style="font-size:11px;background:#25D366;color:#fff;padding:5px 12px;border-radius:20px;text-decoration:none;font-weight:600">🔄 Solicitar actualización</a></div>
+  <div class="header-right">
+    <div class="updated">Actualizado: Jun 2026</div>
+    <a class="btn-wa" href="https://wa.me/593998890863?text=Hola%2C%20por%20favor%20actualiza%20el%20dashboard%20de%20Fullmotos%20con%20los%20datos%20m%C3%A1s%20recientes" target="_blank">🔄 Solicitar actualización</a>
+  </div>
 </header>
 
 <div class="main">
   <div class="tabs">
     <button class="tab active" onclick="showTab('resumen',this)">📊 Resumen</button>
     <button class="tab" onclick="showTab('clientes',this)">👥 Clientes & LTV</button>
+    <button class="tab" onclick="showTab('ltv',this)">💰 LTV Real</button>
     <button class="tab" onclick="showTab('pareto',this)">📐 Pareto 80/20</button>
     <button class="tab" onclick="showTab('productos',this)">🏍️ Productos</button>
     <button class="tab" onclick="showTab('recomendaciones',this)">💡 Recomendaciones</button>
@@ -89,10 +97,10 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
 
   <!-- RESUMEN -->
   <div id="resumen" class="section active">
-    <p class="section-label">Indicadores clave — Enero a Octubre 2025</p>
+    <p class="slabel">Indicadores clave — Enero a Octubre 2025</p>
     <div class="kpi-grid">
       <div class="kpi blue"><div class="kpi-label">Ventas netas totales</div><div class="kpi-value">$15.97M</div><div class="kpi-sub">10 meses facturados</div></div>
-      <div class="kpi green"><div class="kpi-label">Margen bruto</div><div class="kpi-value">27.5%</div><div class="kpi-sub">$4.39M generados</div></div>
+      <div class="kpi green"><div class="kpi-label">Margen bruto</div><div class="kpi-value">27.5%</div><div class="kpi-sub">$4.39M ganancia</div></div>
       <div class="kpi"><div class="kpi-label">Facturas válidas</div><div class="kpi-value">3,085</div><div class="kpi-sub">estado FACTURAD</div></div>
       <div class="kpi"><div class="kpi-label">Clientes activos</div><div class="kpi-value">26</div><div class="kpi-sub">mayoristas B2B</div></div>
       <div class="kpi amber"><div class="kpi-label">Ticket promedio</div><div class="kpi-value">$5,177</div><div class="kpi-sub">por factura</div></div>
@@ -101,49 +109,90 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
     <div class="card">
       <div class="card-title">Ventas netas por mes (USD)</div>
       <div class="legend"><span><span class="ldot" style="background:#185FA5"></span>Ventas netas</span><span><span class="ldot" style="background:#1D9E75;border-radius:50%"></span>Tendencia</span></div>
-      <div style="position:relative;height:240px"><canvas id="chartMes"></canvas></div>
+      <div style="position:relative;height:240px"><canvas id="chartMes" role="img" aria-label="Ventas mensuales 2025">Ene $1.08M a Sep $2.09M.</canvas></div>
     </div>
     <div class="two-col">
-      <div class="card"><div class="card-title">Ventas por localidad</div><div style="position:relative;height:210px"><canvas id="chartLoc"></canvas></div></div>
-      <div class="card"><div class="card-title">Ventas por vendedor</div><div style="position:relative;height:210px"><canvas id="chartVend"></canvas></div></div>
+      <div class="card"><div class="card-title">Ventas por localidad</div><div style="position:relative;height:210px"><canvas id="chartLoc" role="img" aria-label="Ventas por ciudad">Cuenca 62%, Guayaquil 27%.</canvas></div></div>
+      <div class="card"><div class="card-title">Ventas por vendedor</div><div style="position:relative;height:210px"><canvas id="chartVend" role="img" aria-label="Ventas por vendedor">Juan Falconi 53%.</canvas></div></div>
     </div>
   </div>
 
-  <!-- CLIENTES -->
+  <!-- CLIENTES LTV BASICO -->
   <div id="clientes" class="section">
-    <p class="section-label">Top clientes por LTV anualizado</p>
+    <p class="slabel">Top clientes por LTV anualizado</p>
     <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
       <div class="kpi blue"><div class="kpi-label">Cliente #1 LTV anual</div><div class="kpi-value">$4.10M</div><div class="kpi-sub">La Ganga RCA</div></div>
-      <div class="kpi green"><div class="kpi-label">Mayor frecuencia</div><div class="kpi-value">Diaria</div><div class="kpi-sub">Fibro Acero: 924 facturas</div></div>
-      <div class="kpi amber"><div class="kpi-label">Mejor margen cliente</div><div class="kpi-value">33.4%</div><div class="kpi-sub">Cellmarket</div></div>
+      <div class="kpi green"><div class="kpi-label">Pareto — clientes clave</div><div class="kpi-value">5 de 26</div><div class="kpi-sub">generan el 80% de ventas</div></div>
+      <div class="kpi amber"><div class="kpi-label">Cliente #1 participa</div><div class="kpi-value">21.4%</div><div class="kpi-sub">de ventas totales</div></div>
     </div>
+    <div class="card"><div class="card-title">Ranking clientes — ventas 2025 y LTV proyectado anual</div><div id="clientList"></div></div>
+  </div>
+
+  <!-- LTV REAL (NUEVA SECCION) -->
+  <div id="ltv" class="section">
+    <p class="slabel">LTV real — lo que realmente te queda a ti después de costos</p>
+    <div class="kpi-grid">
+      <div class="kpi blue"><div class="kpi-label">LTV básico total/año</div><div class="kpi-value">$19.16M</div><div class="kpi-sub">lo que facturarías</div></div>
+      <div class="kpi green"><div class="kpi-label">LTV real total/año</div><div class="kpi-value">$5.28M</div><div class="kpi-sub">lo que te queda a ti</div></div>
+      <div class="kpi purple"><div class="kpi-label">LTV real 3 años</div><div class="kpi-value">$15.83M</div><div class="kpi-sub">valor total tu cartera</div></div>
+      <div class="kpi coral"><div class="kpi-label">Se va en costos</div><div class="kpi-value">72.4%</div><div class="kpi-sub">de cada venta</div></div>
+    </div>
+
+    <div class="alert-box">
+      <div class="at">⚠️ El dato que más importa</div>
+      <div class="ab">El LTV básico de La Ganga parece $4.1M — pero de eso, $2.9M son costos. Lo que realmente te queda es <strong>$1.22M al año</strong>. Siempre mira el margen, no solo las ventas.</div>
+    </div>
+
     <div class="card">
-      <div class="card-title">Ranking de clientes — ventas 2025 y LTV proyectado anual</div>
-      <div id="clientList"></div>
+      <div class="card-title">LTV básico vs LTV real vs LTV 3 años — por cliente</div>
+      <div class="legend">
+        <span><span class="ldot" style="background:#B5D4F4"></span>LTV básico (ventas/año)</span>
+        <span><span class="ldot" style="background:#185FA5"></span>LTV real (margen/año)</span>
+        <span><span class="ldot" style="background:#1D9E75"></span>LTV 3 años (valor total)</span>
+      </div>
+      <div style="position:relative;height:520px"><canvas id="chartLTVcomp" role="img" aria-label="Comparación LTV básico vs real vs 3 años por cliente">La Ganga: LTV básico $4.1M, LTV real $1.22M, LTV 3 años $3.66M.</canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Margen en dólares por cliente — quién te deja más ganancia real</div>
+      <div class="legend">
+        <span><span class="ldot" style="background:#1D9E75"></span>Margen alto +30%</span>
+        <span><span class="ldot" style="background:#185FA5"></span>Margen medio 25-30%</span>
+        <span><span class="ldot" style="background:#D97706"></span>Margen bajo -25%</span>
+      </div>
+      <div style="position:relative;height:420px"><canvas id="chartMargenD" role="img" aria-label="Margen en dólares por cliente">La Ganga $1.01M, Marcimex $991K, Unnoparts $778K.</canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Porcentaje de margen por cliente — eficiencia de cada relación</div>
+      <div style="position:relative;height:420px"><canvas id="chartMargenP" role="img" aria-label="Porcentaje de margen por cliente">Cresa 34.7%, Cellmarket 33.4%, Jarrin 32.6%.</canvas></div>
+    </div>
+
+    <div class="insight-box">
+      <div class="it">💡 Jcevcorp vs Jarrin Herrera — el caso más revelador</div>
+      <div class="ib">Jcevcorp compra $2.19M pero tiene solo 12.7% de margen → te deja $278K. Jarrin Herrera compra menos ($1.09M) pero tiene 32.6% → te deja $357K. <strong>Jarrin vale más para tu negocio aunque compre menos.</strong></div>
+    </div>
+    <div class="insight-box">
+      <div class="it">💡 Cellmarket y Cresa — los diamantes ocultos</div>
+      <div class="ib">Son clientes pequeños en ventas pero tienen los mejores márgenes: Cellmarket 33.4% y Cresa 34.7%. Si los haces crecer al nivel de La Ganga, serían tus clientes más rentables de todo el portafolio.</div>
     </div>
   </div>
 
   <!-- PARETO -->
   <div id="pareto" class="section">
-    <p class="section-label">Ley de Pareto — 80/20</p>
+    <p class="slabel">Ley de Pareto — 80/20</p>
     <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
       <div class="kpi blue"><div class="kpi-label">Clientes top 20%</div><div class="kpi-value">5 de 26</div><div class="kpi-sub">19.2% de la base</div></div>
       <div class="kpi green"><div class="kpi-label">Ventas generadas</div><div class="kpi-value">80%</div><div class="kpi-sub">$12.5M de $15.97M</div></div>
       <div class="kpi coral"><div class="kpi-label">Cliente #1 solo</div><div class="kpi-value">21.4%</div><div class="kpi-sub">de todas las ventas</div></div>
     </div>
-    <div class="card">
-      <div class="card-title">Participación de cada cliente en ventas totales</div>
-      <div id="paretoList"></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Curva de Pareto acumulada</div>
-      <div style="position:relative;height:240px"><canvas id="chartPareto"></canvas></div>
-    </div>
+    <div class="card"><div class="card-title">Participación por cliente en ventas totales</div><div id="paretoList"></div></div>
+    <div class="card"><div class="card-title">Curva de Pareto acumulada</div><div style="position:relative;height:240px"><canvas id="chartPareto" role="img" aria-label="Curva Pareto acumulada">5 clientes = 80% ventas.</canvas></div></div>
   </div>
 
   <!-- PRODUCTOS -->
   <div id="productos" class="section">
-    <p class="section-label">Top 10 productos por ventas</p>
+    <p class="slabel">Top 10 productos por ventas</p>
     <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
       <div class="kpi blue"><div class="kpi-label">Producto #1</div><div class="kpi-value">$2.19M</div><div class="kpi-sub">DY150 Workforce</div></div>
       <div class="kpi green"><div class="kpi-label">Mejor margen</div><div class="kpi-value">32.8%</div><div class="kpi-sub">DY250 GP-1 R**</div></div>
@@ -152,30 +201,29 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
     <div class="card">
       <div class="card-title">Ventas netas vs costo — top 10 productos</div>
       <div class="legend"><span><span class="ldot" style="background:#185FA5"></span>Ventas netas</span><span><span class="ldot" style="background:#85B7EB"></span>Costo</span></div>
-      <div style="position:relative;height:500px"><canvas id="chartProd"></canvas></div>
+      <div style="position:relative;height:500px"><canvas id="chartProd" role="img" aria-label="Top 10 productos ventas vs costo">DY150 Workforce $2.19M.</canvas></div>
     </div>
   </div>
 
   <!-- RECOMENDACIONES -->
   <div id="recomendaciones" class="section">
-    <p class="section-label">Lo que estás haciendo bien ✅</p>
+    <p class="slabel">Lo que estás haciendo bien ✅</p>
     <div class="rgrid" style="margin-bottom:1rem">
       <div class="rcard green"><div class="rtitle">📈 Crecimiento sostenido</div><div class="rtext">De $1.08M en enero a $2.09M en septiembre. Creciste 94% en 9 meses. El negocio va en la dirección correcta.</div></div>
-      <div class="rcard green"><div class="rtitle">🤝 Clientes ancla fieles</div><div class="rtext">La Ganga y Marcimex compran cada semana. Eso es lo más valioso que puede tener un negocio B2B mayorista.</div></div>
-      <div class="rcard green"><div class="rtitle">💰 Margen saludable</div><div class="rtext">27.5% de margen bruto en distribución de motos es excelente. Por cada $100 vendidos, $27.5 quedan para el negocio.</div></div>
-      <div class="rcard green"><div class="rtitle">🏍️ Producto estrella claro</div><div class="rtext">La DY150 Workforce lidera con $2.19M y 2,445 unidades. Es el producto que más debes proteger y promover siempre.</div></div>
+      <div class="rcard green"><div class="rtitle">🤝 Clientes ancla fieles</div><div class="rtext">La Ganga y Marcimex compran cada semana. Eso es lo más valioso en un negocio B2B mayorista.</div></div>
+      <div class="rcard green"><div class="rtitle">💰 Margen saludable</div><div class="rtext">27.5% de margen bruto en distribución de motos es excelente. Por cada $100 vendidos, $27.5 son tuyos.</div></div>
+      <div class="rcard green"><div class="rtitle">🏍️ Producto estrella claro</div><div class="rtext">La DY150 Workforce lidera con $2.19M y 2,445 unidades. Tu producto más confiable para generar volumen.</div></div>
     </div>
-    <p class="section-label">Lo que deberías mejorar ⚡</p>
+    <p class="slabel">Lo que deberías mejorar ⚡</p>
     <div class="rgrid">
-      <div class="rcard amber"><div class="rtitle">⚠️ Concentración de riesgo</div><div class="rtext">5 clientes generan el 80% de tus ventas. Si uno se va a la competencia, lo sientes inmediatamente. Diversifica YA.</div></div>
-      <div class="rcard amber"><div class="rtitle">🗺️ Cuenca domina, otras ciudades duermen</div><div class="rtext">Cuenca = 62%. Guayaquil tiene potencial enorme y solo aporta 27%. Manta, Quito y la Costa casi no existen para ti.</div></div>
-      <div class="rcard amber"><div class="rtitle">🧑‍💼 Un vendedor carga todo</div><div class="rtext">Juan Falconi factura $8.45M él solo (53%). Si se va o se enferma, hay un problema enorme. Hay que distribuir la cartera.</div></div>
-      <div class="rcard amber"><div class="rtitle">📅 Enero es tu mes más débil</div><div class="rtext">$1.08M en enero vs $2.09M en septiembre. Diseña promociones de inicio de año para no empezar cada año desde cero.</div></div>
+      <div class="rcard amber"><div class="rtitle">⚠️ Concentración de riesgo</div><div class="rtext">5 clientes = 80% de ventas. Si uno se va a la competencia, lo sientes de inmediato. Diversifica ya.</div></div>
+      <div class="rcard amber"><div class="rtitle">🗺️ Expansión geográfica pendiente</div><div class="rtext">Cuenca domina con 62%. Guayaquil, Manta y Quito tienen potencial enorme. Una estrategia de expansión puede doblar el negocio.</div></div>
+      <div class="rcard amber"><div class="rtitle">🧑‍💼 Dependencia de un vendedor</div><div class="rtext">Juan Falconi maneja el 53% de ventas solo. Distribuir la cartera protege el negocio ante cualquier eventualidad.</div></div>
+      <div class="rcard amber"><div class="rtitle">📐 Revisar margen de Jcevcorp</div><div class="rtext">Es tu 2do cliente en ventas pero tiene el peor margen (12.7%). Probablemente tiene descuentos muy altos. Vale revisar el precio.</div></div>
     </div>
   </div>
 </div>
-
-<div class="footer">Fullmotos Dashboard · Datos: Ene–Oct 2025 · Generado con Claude AI</div>
+<div class="footer">Fullmotos Dashboard · Datos Ene–Oct 2025 · Generado con GitHub Actions + Claude AI</div>
 
 <script>
 function showTab(id,el){
@@ -185,6 +233,8 @@ function showTab(id,el){
   el.classList.add('active');
 }
 
+const gC='rgba(0,0,0,.07)', tC='#6b7280';
+
 function fmtX(v){
   if(v===0)return '$0';
   if(v>=1000000)return '$'+(v/1000000).toFixed(1)+'M';
@@ -192,9 +242,16 @@ function fmtX(v){
   return '$'+v;
 }
 
-const gColor='rgba(0,0,0,.07)';const tColor='#6b7280';
+// --- DATA ---
+const clientNames=['La Ganga','Marcimex','Unnoparts','Jarrin H.','Jcevcorp','Fibro Acero','Motopraise','Motoraustro','Cellmarket','Asantecorp'];
+const ltvBasico=[4097220,4005188,2958429,1314554,2629793,1281475,712663,675836,393128,383792];
+const ltvReal=[1219327,1190079,934520,428417,334147,312088,210516,177222,131338,114217];
+const ltv3anos=[3657981,3570237,2803560,1285251,1002441,936264,631548,531666,394014,342651];
+const margenD=[1016106,991732,778766,357014,278456,260074,175430,147685,109448,95181];
+const margenP=[29.8,29.7,31.6,32.6,12.7,24.4,29.5,26.2,33.4,29.8];
+const margenColors=margenP.map(p=>p>=30?'#1D9E75':p>=25?'#185FA5':'#D97706');
 
-// CLIENTES
+// --- CLIENTES LIST ---
 const clients=[
   {name:'La Ganga RCA',loc:'Guayaquil',total:3414350,ltv:4097220,facturas:141,margen:29.8,bg:'#DBEAFE',tx:'#1e40af'},
   {name:'Marcimex S.A.',loc:'Cuenca',total:3337657,ltv:4005188,facturas:56,margen:29.7,bg:'#D1FAE5',tx:'#065f46'},
@@ -211,7 +268,7 @@ const maxT=clients[0].total;
 const cl=document.getElementById('clientList');
 clients.forEach((c,i)=>{
   const ini=c.name.split(' ').slice(0,2).map(w=>w[0]).join('');
-  cl.innerHTML+=`<div class="client-row">
+  cl.innerHTML+=`<div class="crow">
     <div class="crank">${i+1}</div>
     <div class="cavatar" style="background:${c.bg};color:${c.tx}">${ini}</div>
     <div class="cinfo">
@@ -219,14 +276,11 @@ clients.forEach((c,i)=>{
       <div class="cmeta">${c.loc} · ${c.facturas} facturas · margen ${c.margen}%</div>
       <div class="cbar-bg"><div class="cbar-fill" style="width:${(c.total/maxT*100).toFixed(0)}%"></div></div>
     </div>
-    <div class="cval">
-      <div class="ctotal">$${(c.total/1e6).toFixed(2)}M</div>
-      <div class="cltv">LTV $${(c.ltv/1e6).toFixed(2)}M/año</div>
-    </div>
+    <div class="cval"><div class="ctotal">$${(c.total/1e6).toFixed(2)}M</div><div class="cltv">LTV $${(c.ltv/1e6).toFixed(2)}M/año</div></div>
   </div>`;
 });
 
-// PARETO BARS
+// --- PARETO BARS ---
 const pd=[
   {name:'La Ganga RCA',val:3414350,pct:21.4},{name:'Marcimex S.A.',val:3337657,pct:20.9},
   {name:'Unnoparts',val:2465357,pct:15.4},{name:'Jcevcorp',val:2191494,pct:13.7},
@@ -234,17 +288,20 @@ const pd=[
   {name:'Motopraise',val:593886,pct:3.7},{name:'Motoraustro',val:563196,pct:3.5},
   {name:'Cellmarket',val:327607,pct:2.1},{name:'Asantecorp',val:319827,pct:2.0},
 ];
-const pc=['#185FA5','#185FA5','#185FA5','#185FA5','#185FA5','#378ADD','#378ADD','#85B7EB','#85B7EB','#B5D4F4'];
+const pColors=['#185FA5','#185FA5','#185FA5','#185FA5','#185FA5','#378ADD','#378ADD','#85B7EB','#85B7EB','#B5D4F4'];
 const pl=document.getElementById('paretoList');
+let cum=0;
+const paretoAcum=[];
 pd.forEach((p,i)=>{
+  cum+=p.pct; paretoAcum.push(parseFloat(cum.toFixed(1)));
   pl.innerHTML+=`<div class="prow">
     <div class="plabel">${p.name}</div>
-    <div class="pbar-wrap"><div class="pbar-inner" style="width:${(p.pct/21.4*100).toFixed(0)}%;background:${pc[i]}"><span class="ppct">${p.pct}%</span></div></div>
+    <div class="pbar-wrap"><div class="pbar-inner" style="width:${(p.pct/21.4*100).toFixed(0)}%;background:${pColors[i]}"><span class="ppct">${p.pct}%</span></div></div>
     <div class="pamt">$${(p.val/1e6).toFixed(2)}M</div>
   </div>`;
 });
 
-// CHARTS
+// --- CHART: VENTAS MES ---
 new Chart(document.getElementById('chartMes'),{
   type:'bar',
   data:{
@@ -255,38 +312,42 @@ new Chart(document.getElementById('chartMes'),{
     ]
   },
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{
-    y:{grid:{color:gColor},ticks:{color:tColor,callback:v=>v===0?'$0':'$'+(v/1e6).toFixed(1)+'M'}},
-    x:{grid:{display:false},ticks:{color:tColor}}
+    y:{grid:{color:gC},ticks:{color:tC,callback:v=>v===0?'$0':'$'+(v/1e6).toFixed(1)+'M'}},
+    x:{grid:{display:false},ticks:{color:tC}}
   }}
 });
 
+// --- CHART: LOCALIDAD ---
 new Chart(document.getElementById('chartLoc'),{
   type:'doughnut',
   data:{labels:['Cuenca 62%','Guayaquil 27%','Azuay 11%','Otros <1%'],datasets:[{data:[9904640,4336741,1689395,37349],backgroundColor:['#185FA5','#1D9E75','#534AB7','#D1D5DB'],borderWidth:2,borderColor:'#fff'}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tColor,padding:8}}}}
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}
 });
 
+// --- CHART: VENDEDORES ---
 new Chart(document.getElementById('chartVend'),{
   type:'doughnut',
   data:{labels:['Juan Falconi 53%','Espinoza Nicolás 20%','Oficina 14%','Pauta Patricio 14%'],datasets:[{data:[8451958,3131999,2207506,2173935],backgroundColor:['#185FA5','#D85A30','#1D9E75','#534AB7'],borderWidth:2,borderColor:'#fff'}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tColor,padding:8}}}}
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}
 });
 
+// --- CHART: PARETO CURVA ---
 new Chart(document.getElementById('chartPareto'),{
   type:'line',
   data:{
-    labels:['1','2','3','4','5','6','7','8','9','10'],
+    labels:pd.map((_,i)=>i+1+''),
     datasets:[
-      {label:'% acumulado',data:[21.4,42.3,57.7,71.4,78.3,85.0,88.7,92.2,94.3,96.3],borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,.08)',pointBackgroundColor:'#185FA5',fill:true,tension:.3},
-      {label:'Línea 80%',data:[80,80,80,80,80,80,80,80,80,80],borderColor:'#DC2626',borderDash:[6,4],pointRadius:0,fill:false}
+      {label:'% acumulado',data:paretoAcum,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,.08)',pointBackgroundColor:'#185FA5',fill:true,tension:.3},
+      {label:'80%',data:pd.map(()=>80),borderColor:'#DC2626',borderDash:[6,4],pointRadius:0,fill:false}
     ]
   },
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{
-    y:{min:0,max:100,grid:{color:gColor},ticks:{color:tColor,callback:v=>v+'%'}},
-    x:{title:{display:true,text:'Número de cliente',color:tColor,font:{size:10}},grid:{display:false},ticks:{color:tColor}}
+    y:{min:0,max:100,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},
+    x:{title:{display:true,text:'Número de cliente',color:tC,font:{size:10}},grid:{display:false},ticks:{color:tC}}
   }}
 });
 
+// --- CHART: PRODUCTOS ---
 new Chart(document.getElementById('chartProd'),{
   type:'bar',indexAxis:'y',
   data:{
@@ -300,8 +361,68 @@ new Chart(document.getElementById('chartProd'),{
     responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmtX(ctx.parsed.x)}}},
     scales:{
-      x:{grid:{color:gColor},ticks:{color:tColor,callback:fmtX}},
-      y:{grid:{display:false},ticks:{color:tColor,font:{size:11}}}
+      x:{grid:{color:gC},ticks:{color:tC,callback:fmtX}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
+    }
+  }
+});
+
+// --- CHART: LTV COMPARACION (3 datasets horizontales separados) ---
+new Chart(document.getElementById('chartLTVcomp'),{
+  type:'bar',indexAxis:'y',
+  data:{
+    labels:clientNames,
+    datasets:[
+      {label:'LTV básico',data:ltvBasico,backgroundColor:'#B5D4F4',borderRadius:3,borderSkipped:false},
+      {label:'LTV real',data:ltvReal,backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false},
+      {label:'LTV 3 años',data:ltv3anos,backgroundColor:'#1D9E75',borderRadius:3,borderSkipped:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmtX(ctx.parsed.x)}}},
+    scales:{
+      x:{min:0,grid:{color:gC},ticks:{color:tC,callback:fmtX}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
+    }
+  }
+});
+
+// --- CHART: MARGEN EN $ ---
+new Chart(document.getElementById('chartMargenD'),{
+  type:'bar',indexAxis:'y',
+  data:{
+    labels:clientNames,
+    datasets:[{label:'Margen $',data:margenD,backgroundColor:margenColors,borderRadius:3}]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmtX(ctx.parsed.x)+' ('+margenP[ctx.dataIndex]+'%)'}}},
+    scales:{
+      x:{min:0,grid:{color:gC},ticks:{color:tC,callback:fmtX}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
+    }
+  }
+});
+
+// --- CHART: MARGEN % ---
+new Chart(document.getElementById('chartMargenP'),{
+  type:'bar',indexAxis:'y',
+  data:{
+    labels:clientNames,
+    datasets:[{
+      label:'% margen',
+      data:margenP,
+      backgroundColor:margenColors,
+      borderRadius:3
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.x}% de margen`}}},
+    scales:{
+      x:{min:0,max:40,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},
+      y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}
     }
   }
 });
