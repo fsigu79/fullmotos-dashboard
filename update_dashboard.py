@@ -41,11 +41,21 @@ def fv(v):
 
 def analyze(excel_bytes):
     df = pd.read_excel(io.BytesIO(excel_bytes))
+    print(f"   Total filas raw: {len(df)}")
+    print(f"   Estados: {df['estadofac'].value_counts().to_dict()}")
+    print(f"   Hojas leídas: Sheet1 por defecto")
+    print(f"   vtaNeta sin filtro: ${df['vtaNeta'].sum():,.2f}")
+    
+    # Solo facturas emitidas, excluir devoluciones y anulados
     dv = df[df['estadofac'] == 'FACTURAD'].copy()
+    print(f"   Filas FACTURAD: {len(dv)}")
+    print(f"   vtaNeta FACTURAD: ${dv['vtaNeta'].sum():,.2f}")
+    
     dv['fecha'] = pd.to_datetime(dv['fecha'], errors='coerce', dayfirst=True)
     dv = dv.dropna(subset=['fecha'])
     dv['mes'] = dv['fecha'].dt.strftime('%Y-%m')
     dv['año'] = dv['fecha'].dt.year.astype(int)
+    print(f"   Años en datos: {sorted(dv['año'].unique().tolist())}")
 
     tv = float(dv['vtaNeta'].sum())
     tc = float(dv['costotal'].sum())
