@@ -38,7 +38,8 @@ def download_excel(token):
 def analyze_data(excel_bytes):
     df = pd.read_excel(io.BytesIO(excel_bytes))
     df_v = df[df['estadofac'] == 'FACTURAD'].copy()
-    df_v['fecha'] = pd.to_datetime(df_v['fecha'])
+    df_v['fecha'] = pd.to_datetime(df_v['fecha'], errors='coerce', dayfirst=True)
+    df_v = df_v.dropna(subset=['fecha'])
     df_v['mes_str'] = df_v['fecha'].dt.strftime('%Y-%m')
     df_v['mes_nom'] = df_v['fecha'].dt.strftime('%b')
 
