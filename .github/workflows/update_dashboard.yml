@@ -2,11 +2,13 @@ name: Actualizar Dashboard Fullmotos
 
 on:
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: '0 11 * * 1'
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
+  secrets: write
 
 jobs:
   update:
@@ -14,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -31,16 +35,3 @@ jobs:
           MS_REFRESH_TOKEN: ${{ secrets.MS_REFRESH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python update_dashboard.py
-
-      - name: Guardar nuevo refresh token
-        if: always()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ -f new_refresh_token.txt ]; then
-            NEW_TOKEN=$(cat new_refresh_token.txt)
-            if [ -n "$NEW_TOKEN" ]; then
-              gh secret set MS_REFRESH_TOKEN --body "$NEW_TOKEN"
-              echo "Refresh token actualizado"
-            fi
-          fi
