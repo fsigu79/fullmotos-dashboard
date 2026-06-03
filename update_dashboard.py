@@ -62,7 +62,10 @@ def analyze_data(excel_bytes):
     clientes['margen'] = ((clientes['total'] - clientes['costo']) / clientes['total'] * 100).round(1)
     clientes['ltv'] = (clientes['total'] * 1.2).round(0)
     clientes['ticket'] = (clientes['total'] / clientes['facturas']).round(0)
-    top_clientes = clientes.head(10).to_dict('records')
+    top_clientes = clientes.head(10).copy()
+    for col in top_clientes.select_dtypes(include=['datetime64[ns]','datetime64[ns, UTC]']).columns:
+        top_clientes[col] = top_clientes[col].astype(str)
+    top_clientes = top_clientes.to_dict('records')
 
     total_c = clientes['total'].sum()
     clientes['pct'] = (clientes['total'] / total_c * 100).round(1)
