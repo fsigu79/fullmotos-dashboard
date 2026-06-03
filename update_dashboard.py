@@ -46,8 +46,12 @@ def analyze(excel_bytes):
     print(f"   Hojas leídas: Sheet1 por defecto")
     print(f"   vtaNeta sin filtro: ${df['vtaNeta'].sum():,.2f}")
     
-    # Solo facturas emitidas, excluir devoluciones y anulados
+    # Solo facturas emitidas, excluir devoluciones
+    # IMPORTANTE: devoluciones tienen vtaNeta negativa pero estadofac=DEVOLUCION
+    # Filtrar SOLO FACTURAD excluye devoluciones correctamente
     dv = df[df['estadofac'] == 'FACTURAD'].copy()
+    # Adicionalmente excluir filas con vtaNeta negativa (devoluciones mal clasificadas)
+    dv = dv[dv['vtaNeta'] >= 0]
     print(f"   Filas FACTURAD: {len(dv)}")
     print(f"   vtaNeta FACTURAD: ${dv['vtaNeta'].sum():,.2f}")
     
