@@ -2,8 +2,11 @@ name: Actualizar Dashboard Fullmotos
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Todos los lunes a las 6am UTC (1am Ecuador)
-  workflow_dispatch:       # También se puede correr manualmente desde GitHub
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update:
@@ -32,7 +35,7 @@ jobs:
       - name: Guardar nuevo refresh token
         if: always()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f new_refresh_token.txt ]; then
             NEW_TOKEN=$(cat new_refresh_token.txt)
