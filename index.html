@@ -261,76 +261,11 @@ const veT=VE.reduce((a,v)=>a+v.ventas,0);
 new Chart(document.getElementById('cVend'),{type:'doughnut',data:{labels:VE.map(v=>v.vendedor.split(' ')[0]+' '+((v.ventas/veT)*100).toFixed(0)+'%'),datasets:[{data:VE.map(v=>v.ventas),backgroundColor:['#185FA5','#D85A30','#1D9E75','#534AB7'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}});
 
 
-(function(){
-  const canvas = document.getElementById('cLTV');
-  const parent = canvas.parentElement;
-  canvas.style.display = 'none';
-  const labels = NAMES;
-  const maxVal = Math.max(...LTV_B) * 1.05;
-  const H = 490, W = parent.offsetWidth || 700;
-  const mL = 110, mR = 20, mT = 10, mB = 40;
-  const cW = W - mL - mR;
-  const rH = (H - mT - mB) / labels.length;
-  const bH = rH * 0.22;
-  function fmtV(v){if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M';if(v>=1000)return '$'+(v/1000).toFixed(0)+'K';return '$'+v;}
-  let rows = '';
-  labels.forEach((lbl,i)=>{
-    const y = mT + i*rH + rH*0.1;
-    rows += `
-      <text x="${mL-6}" y="${y+rH*0.45}" text-anchor="end" font-size="10" fill="#555">${lbl}</text>
-      <rect x="${mL}" y="${y}" width="${(LTV_B[i]/maxVal)*cW}" height="${bH}" rx="2" fill="#B5D4F4"/>
-      <rect x="${mL}" y="${y+bH+2}" width="${(LTV_R[i]/maxVal)*cW}" height="${bH}" rx="2" fill="#185FA5"/>
-      <rect x="${mL}" y="${y+bH*2+4}" width="${(LTV_3[i]/maxVal)*cW}" height="${bH}" rx="2" fill="#1D9E75"/>`;
-  });
-  let ticks='';
-  for(let i=0;i<=5;i++){const v=maxVal*i/5;const x=mL+(v/maxVal)*cW;ticks+=`<line x1="${x}" y1="${mT}" x2="${x}" y2="${H-mB}" stroke="rgba(0,0,0,.07)"/><text x="${x}" y="${H-mB+14}" text-anchor="middle" font-size="10" fill="#6b7280">${fmtV(v)}</text>`;}
-  const svg=`<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${ticks}${rows}<line x1="${mL}" y1="${mT}" x2="${mL}" y2="${H-mB}" stroke="#e5e7eb"/></svg>`;
-  const div=document.createElement('div');div.innerHTML=svg;parent.appendChild(div);
-})();
 
 
 
-(function(){
-  const canvas=document.getElementById('cMgD');
-  const parent=canvas.parentElement;canvas.style.display='none';
-  const maxVal=Math.max(...MGD)*1.1;
-  const H=360,W=parent.offsetWidth||700,mL=110,mR=80,mT=10,mB=40;
-  const cW=W-mL-mR,rH=(H-mT-mB)/NAMES.length,bH=rH*0.55;
-  function fmtV(v){if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M';if(v>=1000)return '$'+(v/1000).toFixed(0)+'K';return '$'+v;}
-  let rows='';
-  NAMES.forEach((lbl,i)=>{
-    const y=mT+i*rH+(rH-bH)/2;
-    const w=(MGD[i]/maxVal)*cW;
-    rows+=`<text x="${mL-6}" y="${y+bH/2+4}" text-anchor="end" font-size="10" fill="#555">${lbl}</text>
-    <rect x="${mL}" y="${y}" width="${w}" height="${bH}" rx="3" fill="${MGCOL[i]}"/>
-    <text x="${mL+w+4}" y="${y+bH/2+4}" font-size="10" fill="#374151">${fmtV(MGD[i])} (${MGP[i]}%)</text>`;
-  });
-  let ticks='';
-  for(let i=0;i<=4;i++){const v=maxVal*i/4;const x=mL+(v/maxVal)*cW;ticks+=`<line x1="${x}" y1="${mT}" x2="${x}" y2="${H-mB}" stroke="rgba(0,0,0,.07)"/><text x="${x}" y="${H-mB+14}" text-anchor="middle" font-size="10" fill="#6b7280">${fmtV(v)}</text>`;}
-  const svg=`<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${ticks}${rows}<line x1="${mL}" y1="${mT}" x2="${mL}" y2="${H-mB}" stroke="#e5e7eb"/></svg>`;
-  const div=document.createElement('div');div.innerHTML=svg;parent.appendChild(div);
-})();
 
 
-
-(function(){
-  const canvas=document.getElementById('cMgP');
-  const parent=canvas.parentElement;canvas.style.display='none';
-  const H=360,W=parent.offsetWidth||700,mL=110,mR=60,mT=10,mB=40;
-  const cW=W-mL-mR,rH=(H-mT-mB)/NAMES.length,bH=rH*0.55;
-  let rows='';
-  NAMES.forEach((lbl,i)=>{
-    const y=mT+i*rH+(rH-bH)/2;
-    const w=(MGP[i]/40)*cW;
-    rows+=`<text x="${mL-6}" y="${y+bH/2+4}" text-anchor="end" font-size="10" fill="#555">${lbl}</text>
-    <rect x="${mL}" y="${y}" width="${w}" height="${bH}" rx="3" fill="${MGCOL[i]}"/>
-    <text x="${mL+w+4}" y="${y+bH/2+4}" font-size="10" fill="#374151" font-weight="600">${MGP[i]}%</text>`;
-  });
-  let ticks='';
-  [0,10,20,30,40].forEach(v=>{const x=mL+(v/40)*cW;ticks+=`<line x1="${x}" y1="${mT}" x2="${x}" y2="${H-mB}" stroke="rgba(0,0,0,.07)"/><text x="${x}" y="${H-mB+14}" text-anchor="middle" font-size="10" fill="#6b7280">${v}%</text>`;});
-  const svg=`<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${ticks}${rows}<line x1="${mL}" y1="${mT}" x2="${mL}" y2="${H-mB}" stroke="#e5e7eb"/></svg>`;
-  const div=document.createElement('div');div.innerHTML=svg;parent.appendChild(div);
-})();
 
 
 new Chart(document.getElementById('cPar'),{type:'line',data:{labels:CL.map((_,i)=>(i+1)+''),datasets:[{label:'% acumulado',data:PARCUM,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,.08)',pointBackgroundColor:'#185FA5',fill:true,tension:.3},{label:'80%',data:CL.map(()=>80),borderColor:'#DC2626',borderDash:[6,4],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},x:{grid:{display:false},ticks:{color:tC}}}}});
@@ -386,6 +321,142 @@ new Chart(document.getElementById('cPar'),{type:'line',data:{labels:CL.map((_,i)
   parent.appendChild(div);
 })();
 
+
+// ---- GRAFICOS HORIZONTALES CON CHART.JS ----
+// Restaurar visibilidad de canvas por si acaso
+['cLTV','cMgD','cMgP','cProd'].forEach(id=>{
+  const c = document.getElementById(id);
+  if(c) c.style.display = '';
+});
+
+// Destruir charts anteriores si existen
+Chart.instances && Object.values(Chart.instances).forEach(ch=>{
+  if(['cLTV','cMgD','cMgP','cProd'].includes(ch.canvas.id)) ch.destroy();
+});
+
+new Chart(document.getElementById('cProd'),{
+  type:'bar',
+  data:{
+    labels:PR.map(p=>p.articulo),
+    datasets:[
+      {label:'Ventas netas',data:PR.map(p=>p.ventas),backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false},
+      {label:'Costo',data:PR.map(p=>p.costo),backgroundColor:'#85B7EB',borderRadius:3,borderSkipped:false}
+    ]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)}}
+    },
+    scales:{
+      x:{
+        beginAtZero:true,
+        grid:{color:gC},
+        ticks:{color:tC,callback:fx}
+      },
+      y:{
+        grid:{display:false},
+        ticks:{color:tC,font:{size:11}}
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('cLTV'),{
+  type:'bar',
+  data:{
+    labels:NAMES,
+    datasets:[
+      {label:'LTV básico',data:LTV_B,backgroundColor:'#B5D4F4',borderRadius:3,borderSkipped:false},
+      {label:'LTV real',data:LTV_R,backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false},
+      {label:'LTV 3 años',data:LTV_3,backgroundColor:'#1D9E75',borderRadius:3,borderSkipped:false}
+    ]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)}}
+    },
+    scales:{
+      x:{
+        beginAtZero:true,
+        grid:{color:gC},
+        ticks:{color:tC,callback:fx}
+      },
+      y:{
+        grid:{display:false},
+        ticks:{color:tC,font:{size:10}}
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('cMgD'),{
+  type:'bar',
+  data:{
+    labels:NAMES,
+    datasets:[
+      {label:'Margen $',data:MGD,backgroundColor:MGCOL,borderRadius:3,borderSkipped:false}
+    ]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)+' ('+MGP[ctx.dataIndex]+'%)'}}
+    },
+    scales:{
+      x:{
+        beginAtZero:true,
+        grid:{color:gC},
+        ticks:{color:tC,callback:fx}
+      },
+      y:{
+        grid:{display:false},
+        ticks:{color:tC,font:{size:10}}
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('cMgP'),{
+  type:'bar',
+  data:{
+    labels:NAMES,
+    datasets:[
+      {label:'% margen',data:MGP,backgroundColor:MGCOL,borderRadius:3,borderSkipped:false}
+    ]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>ctx.parsed.x.toFixed(1)+'% margen'}}
+    },
+    scales:{
+      x:{
+        beginAtZero:true,
+        max:40,
+        grid:{color:gC},
+        ticks:{color:tC,callback:v=>v+'%'}
+      },
+      y:{
+        grid:{display:false},
+        ticks:{color:tC,font:{size:10}}
+      }
+    }
+  }
+});
 </script>
 </body>
 </html>
