@@ -2,28 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fullmotos — Dashboard BI 2024-2025</title>
+<title>Fullmotos — Dashboard BI</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f5f7;color:#1a1a2e}
 header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px}
 .logo{display:flex;align-items:center;gap:10px}
-.li{width:36px;height:36px;background:#185FA5;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
-.lt{font-size:16px;font-weight:600}.ls{font-size:11px;color:#6b7280}
-.hr{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.logo-icon{width:36px;height:36px;background:#185FA5;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+.logo-text{font-size:16px;font-weight:600}.logo-sub{font-size:11px;color:#6b7280}
+.hright{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .upd{font-size:11px;color:#6b7280;background:#f3f4f6;padding:4px 10px;border-radius:20px}
-.btn-update{font-size:12px;background:#185FA5;color:#fff;padding:7px 14px;border-radius:20px;border:none;cursor:pointer;font-weight:600}
-.btn-update:hover{background:#0c447c}
-.btn-wa{font-size:11px;background:#25D366;color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none;font-weight:600}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
-.modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:16px;padding:2rem;max-width:420px;width:90%;text-align:center}
-.modal h3{font-size:16px;margin-bottom:.75rem}
-.modal p{font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:1.5rem}
-.modal-btns{display:flex;gap:10px;justify-content:center}
-.btn-gh{background:#24292e;color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-.btn-cancel{background:#f3f4f6;color:#374151;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600}
+.btn-wa{font-size:11px;background:#25D366;color:#fff;padding:5px 12px;border-radius:20px;text-decoration:none;font-weight:600}
 .main{max-width:1100px;margin:0 auto;padding:1.5rem}
 .tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap;background:#fff;padding:.75rem 1rem;border-radius:12px;border:1px solid #e5e7eb}
 .tab{font-size:12px;padding:6px 14px;border:1px solid #e5e7eb;border-radius:20px;cursor:pointer;background:#fff;color:#6b7280;font-weight:500}
@@ -32,7 +22,9 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
 .sl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;margin:0 0 .75rem}
 .kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.25rem}
 .k{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.9rem 1rem}
-.kl{font-size:11px;color:#6b7280;margin-bottom:6px}.kv{font-size:22px;font-weight:700;line-height:1}.ks{font-size:11px;color:#9ca3af;margin-top:4px}
+.kl{font-size:11px;color:#6b7280;margin-bottom:6px}
+.kv{font-size:22px;font-weight:700;line-height:1}
+.ks{font-size:11px;color:#9ca3af;margin-top:4px}
 .k.bl{border-top:3px solid #185FA5}.k.bl .kv{color:#185FA5}
 .k.gr{border-top:3px solid #1D9E75}.k.gr .kv{color:#1D9E75}
 .k.am{border-top:3px solid #D97706}.k.am .kv{color:#D97706}
@@ -43,50 +35,51 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
 .tc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .leg{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:11px;color:#6b7280}
 .ld{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
-.crow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f3f4f6}.crow:last-child{border:none}
+.crow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f3f4f6}
+.crow:last-child{border:none}
 .crk{font-size:11px;font-weight:600;color:#9ca3af;width:18px;text-align:center}
 .cav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-.ci{flex:1;min-width:0}.cn{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cm{font-size:11px;color:#9ca3af}.cb{background:#f3f4f6;border-radius:4px;height:5px;margin-top:4px}
-.cf{height:5px;border-radius:4px;background:#185FA5}.cv{text-align:right;flex-shrink:0}
-.ct2{font-size:13px;font-weight:700}.clt{font-size:11px;color:#9ca3af}
+.ci{flex:1;min-width:0}
+.cn{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm{font-size:11px;color:#9ca3af}
+.cb{background:#f3f4f6;border-radius:4px;height:5px;margin-top:4px}
+.cf{height:5px;border-radius:4px;background:#185FA5}
+.cv{text-align:right;flex-shrink:0}
+.ct2{font-size:13px;font-weight:700}
+.clt{font-size:11px;color:#9ca3af}
 .pr{display:flex;align-items:center;gap:8px;margin-bottom:7px}
 .pl{font-size:11px;width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pbw{flex:1;background:#f3f4f6;border-radius:4px;height:20px;overflow:hidden}
 .pbi{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px}
-.pp{font-size:10px;font-weight:700;color:#fff}.pa{font-size:11px;color:#6b7280;width:72px;text-align:right;flex-shrink:0}
+.pp{font-size:10px;font-weight:700;color:#fff}
+.pa{font-size:11px;color:#6b7280;width:72px;text-align:right;flex-shrink:0}
 .rc{border-radius:10px;padding:.9rem 1rem}
-.rc.g{background:#f0fdf4;border-left:3px solid #16a34a}.rc.a{background:#fffbeb;border-left:3px solid #d97706}.rc.r{background:#fef2f2;border-left:3px solid #dc2626}
-.rc.g .rt{color:#15803d}.rc.a .rt{color:#b45309}.rc.r .rt{color:#991b1b}
-.rc.g .rb{color:#166534}.rc.a .rb{color:#92400e}.rc.r .rb{color:#7f1d1d}
+.rc.g{background:#f0fdf4;border-left:3px solid #16a34a}
+.rc.a{background:#fffbeb;border-left:3px solid #d97706}
+.rc.g .rt{color:#15803d}.rc.a .rt{color:#b45309}
+.rc.g .rb{color:#166534}.rc.a .rb{color:#92400e}
 .rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-.rt{font-size:12px;font-weight:600;margin-bottom:4px}.rb{font-size:11px;line-height:1.5}
-.alb{background:#EAF0FB;border-left:3px solid #185FA5;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:1rem}
-.alt{font-size:12px;font-weight:600;color:#185FA5;margin-bottom:3px}.alb2{font-size:12px;color:#1e40af;line-height:1.7}
+.rt{font-size:12px;font-weight:600;margin-bottom:4px}
+.rb{font-size:11px;line-height:1.5}
+.alb{background:#fffbeb;border-left:3px solid #d97706;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:1rem}
+.alt{font-size:12px;font-weight:600;color:#92400e;margin-bottom:3px}
+.alb2{font-size:11px;color:#b45309;line-height:1.5}
 .ins{background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:.6rem}
-.int{font-size:12px;font-weight:600;color:#15803d;margin-bottom:3px}.inb{font-size:11px;color:#166534;line-height:1.5}
+.int{font-size:12px;font-weight:600;color:#15803d;margin-bottom:3px}
+.inb{font-size:11px;color:#166534;line-height:1.5}
 .footer{text-align:center;padding:2rem 1rem;font-size:11px;color:#9ca3af}
 @media(max-width:600px){.tc{grid-template-columns:1fr}.rg{grid-template-columns:1fr}.kv{font-size:18px}}
 </style>
 </head>
 <body>
-<div class="modal-overlay" id="modalUpdate">
-  <div class="modal">
-    <div style="font-size:36px;margin-bottom:.75rem">🔄</div>
-    <h3>Actualizar dashboard</h3>
-    <p>Ejecutará el flujo completo:<br><strong>1.</strong> Leer <code>fullm2025.xlsx</code> desde OneDrive<br><strong>2.</strong> Procesar y analizar datos<br><strong>3.</strong> Publicar dashboard actualizado<br><br>Tarda <strong>3-5 minutos</strong>. Recarga la página cuando termine.</p>
-    <div class="modal-btns">
-      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <a class="btn-gh" href="https://github.com/fsigu79/fullmotos-dashboard/actions/workflows/update_dashboard.yml" target="_blank" onclick="closeModal()">▶ Ir a GitHub Actions</a>
-    </div>
-  </div>
-</div>
 <header>
-  <div class="logo"><div class="li">🏍️</div><div><div class="lt">Fullmotos Dashboard</div><div class="ls">Inteligencia de negocios 2024-2025</div></div></div>
-  <div class="hr">
-    <div class="upd">🕐 09/06/2026 19:55 ECT</div>
-    <button class="btn-update" onclick="openModal()">🔄 Actualizar datos</button>
-    <a class="btn-wa" href="https://wa.me/593998890863?text=Hola%2C%20por%20favor%20actualiza%20el%20dashboard%20de%20Fullmotos" target="_blank">💬 WhatsApp</a>
+  <div class="logo">
+    <div class="logo-icon">🏍️</div>
+    <div><div class="logo-text">Fullmotos Dashboard</div><div class="logo-sub">Inteligencia de negocios</div></div>
+  </div>
+  <div class="hright">
+    <div class="upd">🕐 Actualizado: 15/06/2026 08:07 (ECT)</div>
+    <a class="btn-wa" href="https://wa.me/593998890863?text=Hola%2C%20actualiza%20el%20dashboard%20de%20Fullmotos" target="_blank">🔄 Solicitar actualización</a>
   </div>
 </header>
 <div class="main">
@@ -100,69 +93,66 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
   </div>
 
   <div id="res" class="sec active">
-    <p class="sl">Indicadores clave — Enero 2024 a Octubre 2025 (22 meses)</p>
+    <p class="sl">Indicadores clave — 22 meses de datos</p>
     <div class="kg">
-      <div class="k bl"><div class="kl">Ventas netas totales</div><div class="kv">$33.86M</div><div class="ks">2024 + 2025</div></div>
-      <div class="k gr"><div class="kl">Margen bruto</div><div class="kv">22.7%</div><div class="ks">$7.68M ganancia real</div></div>
+      <div class="k bl"><div class="kl">Ventas netas totales</div><div class="kv">$33.86M</div><div class="ks">22 meses</div></div>
+      <div class="k gr"><div class="kl">Margen bruto</div><div class="kv">22.7%</div><div class="ks">$7.68M ganancia</div></div>
       <div class="k"><div class="kl">Facturas válidas</div><div class="kv">5,525</div><div class="ks">estado FACTURAD</div></div>
       <div class="k"><div class="kl">Clientes activos</div><div class="kv">29</div><div class="ks">mayoristas B2B</div></div>
       <div class="k am"><div class="kl">Ticket promedio</div><div class="kv">$6,129</div><div class="ks">por factura</div></div>
-      <div class="k re"><div class="kl">Mejor mes</div><div class="kv">2025-09</div><div class="ks">$2.09M</div></div>
+      <div class="k re"><div class="kl">Mejor mes</div><div class="kv">2025-09</div><div class="ks">pico del período</div></div>
     </div>
-    <div class="card"><div class="ct">Ventas netas por mes <span style="font-size:10px;background:#EAF0FB;color:#185FA5;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:600">2024 azul claro · 2025 azul oscuro</span></div>
-      <div class="leg"><span><span class="ld" style="background:#85B7EB"></span>2024</span><span><span class="ld" style="background:#185FA5"></span>2025</span><span><span class="ld" style="background:#1D9E75;border-radius:50%"></span>Tendencia</span></div>
-      <div style="position:relative;height:260px"><canvas id="cMes"></canvas></div>
+    <div class="card"><div class="ct">Ventas netas por mes (USD)</div>
+      <div class="leg"><span><span class="ld" style="background:#185FA5"></span>Ventas</span><span><span class="ld" style="background:#1D9E75;border-radius:50%"></span>Tendencia</span></div>
+      <div style="position:relative;height:240px"><canvas id="cMes"></canvas></div>
     </div>
     <div class="card"><div class="ct">Ventas por año</div>
-      <div style="position:relative;height:180px"><canvas id="cAno"></canvas></div>
+      <div style="position:relative;height:200px"><canvas id="cAno"></canvas></div>
     </div>
     <div class="tc">
-      <div class="card"><div class="ct">Ventas por localidad</div><div style="position:relative;height:220px"><canvas id="cLoc"></canvas></div></div>
-      <div class="card"><div class="ct">Ventas por vendedor</div><div style="position:relative;height:220px"><canvas id="cVend"></canvas></div></div>
+      <div class="card"><div class="ct">Ventas por localidad</div><div style="position:relative;height:210px"><canvas id="cLoc"></canvas></div></div>
+      <div class="card"><div class="ct">Ventas por vendedor</div><div style="position:relative;height:210px"><canvas id="cVend"></canvas></div></div>
     </div>
   </div>
 
   <div id="cli" class="sec">
-    <p class="sl">Top clientes por ventas y LTV — 2024+2025</p>
+    <p class="sl">Top clientes por ventas y LTV</p>
     <div class="kg" style="grid-template-columns:repeat(3,1fr)">
-      <div class="k bl"><div class="kl">Cliente #1 LTV anual</div><div class="kv">$13.80M</div><div class="ks">CORPORACION JCEVCORP C</div></div>
+      <div class="k bl"><div class="kl">Cliente #1 LTV anual</div><div class="kv">$13.80M</div><div class="ks">CORPORACION JCEVCORP</div></div>
       <div class="k gr"><div class="kl">Clientes clave Pareto</div><div class="kv">5 de 29</div><div class="ks">generan el 80% ventas</div></div>
       <div class="k am"><div class="kl">Cliente #1 participa</div><div class="kv">34.0%</div><div class="ks">de ventas totales</div></div>
     </div>
-    <div class="card"><div class="ct">Ranking clientes — ventas 2024+2025 y LTV proyectado</div><div id="cliList"></div></div>
+    <div class="card"><div class="ct">Ranking clientes — ventas y LTV proyectado anual</div><div id="cliList"></div></div>
   </div>
 
   <div id="ltv" class="sec">
     <p class="sl">LTV real — lo que realmente te queda después de costos</p>
     <div class="kg">
-      <div class="k bl"><div class="kl">LTV básico top10/año</div><div class="kv">$39.74M</div><div class="ks">ventas proyectadas</div></div>
-      <div class="k gr"><div class="kl">LTV real top10/año</div><div class="kv">$8.89M</div><div class="ks">ganancia proyectada</div></div>
+      <div class="k bl"><div class="kl">LTV básico total/año</div><div class="kv">$39.74M</div><div class="ks">ventas proyectadas</div></div>
+      <div class="k gr"><div class="kl">LTV real total/año</div><div class="kv">$8.89M</div><div class="ks">ganancia proyectada</div></div>
       <div class="k pu"><div class="kl">LTV real 3 años</div><div class="kv">$26.68M</div><div class="ks">valor total cartera</div></div>
       <div class="k re"><div class="kl">Se va en costos</div><div class="kv">77.3%</div><div class="ks">de cada venta</div></div>
     </div>
-    <div class="alb"><div class="alt">⚠️ El hallazgo más importante</div>
-      <div class="alb2">CORPORACION JCEVCORP es tu cliente #1 con $11.50M pero solo 9.6% de margen → te deja $1.11M real. LA GANGA R.C.A.  S.A compra $6.01M con 29.1% de margen → te deja $1.75M real. <strong>LA GANGA R.C.A.  S.A es más valioso para Fullmotos.</strong></div>
+    <div class="alb"><div class="alt">⚠️ El dato que más importa</div>
+      <div class="alb2">El LTV básico parece enorme pero incluye costos. Lo que realmente queda es el <strong>LTV real (22.7% de margen)</strong>. Siempre mira la ganancia, no solo las ventas.</div>
     </div>
     <div class="card"><div class="ct">LTV básico vs LTV real vs LTV 3 años por cliente</div>
-      <div class="leg"><span><span class="ld" style="background:#B5D4F4"></span>LTV básico/año</span><span><span class="ld" style="background:#185FA5"></span>LTV real/año</span><span><span class="ld" style="background:#1D9E75"></span>LTV 3 años</span></div>
+      <div class="leg"><span><span class="ld" style="background:#B5D4F4"></span>LTV básico</span><span><span class="ld" style="background:#185FA5"></span>LTV real</span><span><span class="ld" style="background:#1D9E75"></span>LTV 3 años</span></div>
       <div style="position:relative;height:500px"><canvas id="cLTV"></canvas></div>
     </div>
     <div class="card"><div class="ct">Margen en dólares por cliente</div>
-      <div style="position:relative;height:380px"><canvas id="cMgD"></canvas></div>
+      <div style="position:relative;height:400px"><canvas id="cMgD"></canvas></div>
     </div>
     <div class="card"><div class="ct">Porcentaje de margen por cliente</div>
-      <div style="position:relative;height:380px"><canvas id="cMgP"></canvas></div>
-    </div>
-    <div class="ins"><div class="int">💡 CORPORACION JARRIN HERRER: diamante del portafolio</div>
-      <div class="inb">Con 32.5% de margen es tu cliente más rentable. Duplicar su volumen vale más que conseguir 3 clientes nuevos con márgenes bajos.</div>
+      <div style="position:relative;height:400px"><canvas id="cMgP"></canvas></div>
     </div>
   </div>
 
   <div id="par" class="sec">
     <p class="sl">Ley de Pareto — 80/20</p>
     <div class="kg" style="grid-template-columns:repeat(3,1fr)">
-      <div class="k bl"><div class="kl">Clientes top</div><div class="kv">5 de 29</div><div class="ks">17.2% de la base</div></div>
-      <div class="k gr"><div class="kl">Ventas generadas</div><div class="kv">~80%</div><div class="ks">por ese grupo</div></div>
+      <div class="k bl"><div class="kl">Clientes top 20%</div><div class="kv">5 de 29</div><div class="ks">17.2% de la base</div></div>
+      <div class="k gr"><div class="kl">Ventas generadas</div><div class="kv">80%</div><div class="ks">por ese grupo</div></div>
       <div class="k re"><div class="kl">Cliente #1 solo</div><div class="kv">34.0%</div><div class="ks">de todas las ventas</div></div>
     </div>
     <div class="card"><div class="ct">Participación por cliente en ventas totales</div><div id="parList"></div></div>
@@ -172,10 +162,10 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
   </div>
 
   <div id="pro" class="sec">
-    <p class="sl">Top 10 productos por ventas 2024+2025</p>
+    <p class="sl">Top 10 productos por ventas</p>
     <div class="kg" style="grid-template-columns:repeat(3,1fr)">
-      <div class="k bl"><div class="kl">Producto #1</div><div class="kv">$3.73M</div><div class="ks">MOTO DAYTONA DY150 WOR</div></div>
-      <div class="k gr"><div class="kl">Mejor margen</div><div class="kv">25.7%</div><div class="ks">MOTO DAYTONA DY150 WOR</div></div>
+      <div class="k bl"><div class="kl">Producto #1</div><div class="kv">$3.73M</div><div class="ks">MOTO DAYTONA DY150 WORKFO</div></div>
+      <div class="k gr"><div class="kl">Mejor margen</div><div class="kv">25.7%</div><div class="ks">MOTO DAYTONA DY150 W</div></div>
       <div class="k"><div class="kl">Marca dominante</div><div class="kv">DAYTONA</div><div class="ks">100% catálogo</div></div>
     </div>
     <div class="card">
@@ -186,277 +176,65 @@ header{background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;displ
   </div>
 
   <div id="rec" class="sec">
-    <p class="sl">Análisis generado desde los datos reales — 09/06/2026 19:55 ECT</p>
-    <div class="alb" style="margin-bottom:1.25rem">
-      <div class="alt">📊 Resumen ejecutivo</div>
-      <div class="alb2">Fullmotos facturó <strong>$33.86M</strong> en 22 meses con un margen bruto de <strong>22.7%</strong> ($7.68M de ganancia real). 2024 generó $17.90M y 2025 proyecta $19.16M anualizados (+7.1%). 2025-09 fue el mejor mes histórico con $2.09M. El mayor riesgo: <strong>5 clientes generan el 80% de las ventas</strong>, y el cliente #1 (CORPORACION JCEVCORP) tiene un margen de solo 9.6% — el más bajo de toda la cartera.</div>
+    <p class="sl">Lo que estás haciendo bien ✅</p>
+    <div class="rg" style="margin-bottom:1rem">
+      <div class="rc g"><div class="rt">📈 Crecimiento sostenido</div><div class="rb">Tus ventas muestran tendencia creciente a lo largo del período analizado. El negocio va en la dirección correcta.</div></div>
+      <div class="rc g"><div class="rt">🤝 Clientes ancla fieles</div><div class="rb">Tus top 2 clientes compran cada semana. Eso es lo más valioso en un negocio B2B mayorista.</div></div>
+      <div class="rc g"><div class="rt">💰 Margen saludable</div><div class="rb">22.7% de margen bruto en distribución de motos es excelente. Por cada $100 vendidos, $23 quedan para el negocio.</div></div>
+      <div class="rc g"><div class="rt">🏍️ Producto estrella claro</div><div class="rb">MOTO DAYTONA DY150 WORKFORCE lidera las ventas. Enfoca stock y marketing en los primeros 3 productos.</div></div>
     </div>
-    <p class="sl">✅ Lo que está funcionando bien</p>
-    <div class="rg" style="margin-bottom:1.25rem"><div class="rc g"><div class="rt">📈 Crecimiento anual proyectado</div><div class="rb">2024 cerró en $17.90M. Con 10 meses de 2025, la proyección anual es $19.16M — un <strong>7.1% de crecimiento</strong>. El negocio va hacia arriba.</div></div><div class="rc g"><div class="rt">🤝 FIBRO ACERO S.A.: cliente más fiel</div><div class="rb">Con <strong>1,621 facturas en 22 meses</strong> (74 facturas/mes promedio), este cliente compra casi a diario. Esa frecuencia es un activo invaluable.</div></div><div class="rc g"><div class="rt">🏍️ MOTO DAYTONA DY150 WOR: producto estrella</div><div class="rb">Lidera con $3.73M en ventas y 25.7% de margen — el mejor ratio volumen/rentabilidad del catálogo. <strong>Siempre mantener stock de este producto.</strong></div></div><div class="rc g"><div class="rt">🏆 2025-09: récord histórico</div><div class="rb">Septiembre 2025 fue el mejor mes con $2.09M. Analizar qué pasó ese mes (campañas, estacionalidad, nuevos clientes) para replicarlo en otros meses.</div></div></div>
-    <p class="sl">🚨 Alertas críticas — acción requerida</p>
-    <div class="rg" style="margin-bottom:1.25rem"><div class="rc r"><div class="rt">🚨 URGENTE: CORPORACION JCEVCORP al 9.6% de margen</div><div class="rb">Tu cliente #1 genera $11.50M en ventas pero solo te deja $1.1M reales. <strong>Renegociar condiciones comerciales es la acción de mayor impacto que puedes tomar ahora mismo.</strong></div></div><div class="rc a"><div class="rt">🗺️ Cuenca 72.3% — riesgo de concentración</div><div class="rb">Guayaquil aporta 21.2% con solo 2-3 clientes activos. <strong>Conseguir 2 clientes nuevos del tamaño de La Ganga en Guayaquil podría agregar $10M+ al año.</strong></div></div><div class="rc a"><div class="rt">📅 2025-01: mes más débil del período</div><div class="rb">El mes más bajo fue 2025-01. La estacionalidad es predecible — <strong>diseñar una promoción específica para ese período puede nivelar las ventas anuales.</strong></div></div><div class="rc a"><div class="rt">⚠️ MOTO DAYTONA DY250 TEK: margen de solo 16.6%</div><div class="rb">Este producto supera $500K en ventas pero con 16.6% de margen es de los menos rentables. <strong>Evaluar si conviene seguir empujando su venta o redirigir ese esfuerzo a productos más rentables.</strong></div></div></div>
-    <p class="sl">🎯 Oportunidades de crecimiento</p>
-    <div class="rg" style="margin-bottom:1.25rem"><div class="rc a"><div class="rt">💎 CORPORACION JARRIN HER: el cliente más rentable</div><div class="rb">Con 32.5% de margen, es tu cliente más rentable del portafolio. <strong>Doblar su volumen de compra vale más que conseguir 3 clientes nuevos con márgenes bajos.</strong></div></div><div class="rc a"><div class="rt">📐 Pareto: 5 clientes generan el 80%</div><div class="rb">Solo 5 de 29 clientes generan el 80% de tus ventas. <strong>Conseguir 5 clientes nuevos del mismo perfil podría doblar el negocio.</strong></div></div></div>
-    <div class="ins">
-      <div class="int">💡 La regla de oro de estos datos</div>
-      <div class="inb">No todo cliente grande es un buen cliente. El volumen sin margen no es negocio. <strong>El objetivo de Fullmotos: más clientes como LA GANGA R.C.A.  S.A (29.1% margen), menos como CORPORACION JCEVCORP (9.6% margen).</strong></div>
+    <p class="sl">Lo que deberías mejorar ⚡</p>
+    <div class="rg">
+      <div class="rc a"><div class="rt">⚠️ Concentración de riesgo</div><div class="rb">5 clientes generan el 80% de ventas. Si uno se va, lo sientes inmediatamente. Diversifica ya.</div></div>
+      <div class="rc a"><div class="rt">🗺️ Expansión geográfica</div><div class="rb">Cuenca domina. Guayaquil, Manta y Quito tienen potencial enorme. Una estrategia de expansión puede doblar el negocio.</div></div>
+      <div class="rc a"><div class="rt">🧑‍💼 Dependencia de un vendedor</div><div class="rb">Un vendedor maneja más del 50% de ventas. Distribuir la cartera protege el negocio ante cualquier eventualidad.</div></div>
+      <div class="rc a"><div class="rt">📅 Estacionalidad sin estrategia</div><div class="rb">Hay meses bajos predecibles. Diseña promociones anticipadas para nivelar ventas durante todo el año.</div></div>
     </div>
   </div>
 </div>
-<div class="footer">Fullmotos Dashboard · 09/06/2026 19:55 ECT · Datos: 2024-01 – 2025-10 · OneDrive + GitHub Actions + Claude AI</div>
+<div class="footer">Fullmotos Dashboard · Actualizado: 15/06/2026 08:07 ECT · Datos desde OneDrive · GitHub Actions + Claude AI</div>
 
 <script>
 const gC='rgba(0,0,0,.07)',tC='#6b7280';
-function openModal(){document.getElementById('modalUpdate').classList.add('show');}
-function closeModal(){document.getElementById('modalUpdate').classList.remove('show');}
-document.getElementById('modalUpdate').addEventListener('click',function(e){if(e.target===this)closeModal();});
-function fx(v){if(v===0)return '$0';if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M';if(v>=1000)return '$'+(v/1000).toFixed(0)+'K';return '$'+v;}
+const CLIENTES=[{"cliente": "CORPORACION JCEVCORP CIA.", "localidad": "CUENCA", "total": 11500966.79, "facturas": 618, "costo": 10393781.67, "margen": 9.6, "ltv": 13801160.0, "ltv_real": 1328622.0, "ltv_3anos": 3985866.0, "margen_d": 1107185.0}, {"cliente": "LA GANGA R.C.A.  S.A.", "localidad": "GUAYAQUIL", "total": 6014515.0, "facturas": 280, "costo": 4264836.88, "margen": 29.1, "ltv": 7217418.0, "ltv_real": 2099614.0, "ltv_3anos": 6298842.0, "margen_d": 1749678.0}, {"cliente": "MARCIMEX  S.A.", "localidad": "CUENCA", "total": 4919367.84, "facturas": 100, "costo": 3491507.27, "margen": 29.0, "ltv": 5903241.0, "ltv_real": 1713433.0, "ltv_3anos": 5140299.0, "margen_d": 1427861.0}, {"cliente": "UNNOPARTS S.A.", "localidad": "CUENCA", "total": 4630589.0, "facturas": 686, "costo": 3187446.91, "margen": 31.2, "ltv": 5556707.0, "ltv_real": 1731771.0, "ltv_3anos": 5195313.0, "margen_d": 1443142.0}, {"cliente": "FIBRO ACERO S.A.", "localidad": "CUENCA", "total": 1941884.16, "facturas": 1621, "costo": 1480877.91, "margen": 23.7, "ltv": 2330261.0, "ltv_real": 553208.0, "ltv_3anos": 1659624.0, "margen_d": 461006.0}, {"cliente": "CORPORACION JARRIN HERRERA CIA LTDA", "localidad": "AZUAY", "total": 1159960.03, "facturas": 72, "costo": 783126.43, "margen": 32.5, "ltv": 1391952.0, "ltv_real": 452200.0, "ltv_3anos": 1356600.0, "margen_d": 376834.0}, {"cliente": "MOTOPRAISE S.A.S.", "localidad": "AZUAY", "total": 996619.9815, "facturas": 617, "costo": 692741.31, "margen": 30.5, "ltv": 1195944.0, "ltv_real": 364654.0, "ltv_3anos": 1093962.0, "margen_d": 303879.0}, {"cliente": "MOTORAUSTRO CIA. LTDA.", "localidad": "CUENCA", "total": 990372.6, "facturas": 722, "costo": 734226.08, "margen": 25.9, "ltv": 1188447.0, "ltv_real": 307376.0, "ltv_3anos": 922128.0, "margen_d": 256147.0}, {"cliente": "MOTOPARTS CIA.LTDA", "localidad": "CUENCA", "total": 486693.3345, "facturas": 283, "costo": 340311.82, "margen": 30.1, "ltv": 584032.0, "ltv_real": 175658.0, "ltv_3anos": 526974.0, "margen_d": 146382.0}, {"cliente": "ASANTECORP S.A", "localidad": "GUAYAQUIL", "total": 475620.0, "facturas": 104, "costo": 336787.05, "margen": 29.2, "ltv": 570744.0, "ltv_real": 166600.0, "ltv_3anos": 499800.0, "margen_d": 138833.0}],PRODS=[{"articulo": "MOTO DAYTONA DY150 WORKFORCE", "ventas": 3725433.46, "costo": 2767622.3, "margen_pct": 25.7}, {"articulo": "MOTO DAYTONA DY200 WING EVO II", "ventas": 3331517.98, "costo": 2506356.79, "margen_pct": 24.8}, {"articulo": "MOTO DAYTONA DY150 CRUCERO", "ventas": 1824541.1, "costo": 1448090.44, "margen_pct": 20.6}, {"articulo": "MOTO DAYTONA DY250 SCORPION", "ventas": 1818768.76, "costo": 1354654.57, "margen_pct": 25.5}, {"articulo": "MOTO DAYTONA DY180 S1 ADVENTURE", "ventas": 1732317.61, "costo": 1373123.17, "margen_pct": 20.7}, {"articulo": "MOTO DAYTONA DY250 GP-1 R*", "ventas": 1478722.89, "costo": 1104375.08, "margen_pct": 25.3}, {"articulo": "MOTO DAYTONA DY200 CRUCERO", "ventas": 1478474.11, "costo": 1150035.71, "margen_pct": 22.2}, {"articulo": "MOTO DAYTONA DY250 WOLF", "ventas": 1402328.48, "costo": 1142894.53, "margen_pct": 18.5}, {"articulo": "MOTO DAYTONA DY250 TEKKEN EVO", "ventas": 1359322.67, "costo": 1133790.09, "margen_pct": 16.6}, {"articulo": "MOTO DAYTONA DY200 SCORPION", "ventas": 1359258.84, "costo": 1038394.41, "margen_pct": 23.6}],LOC=[{"localidad": "CUENCA", "ventas": 24486114.25}, {"localidad": "GUAYAQUIL", "ventas": 7169176.65}, {"localidad": "AZUAY", "ventas": 2157836.17}, {"localidad": "BUCAY", "ventas": 36015.6}, {"localidad": "MANTA", "ventas": 13425.0}, {"localidad": "DURAN", "ventas": 49.56}, {"localidad": "QUITO", "ventas": 23.6}, {"localidad": "ESMERALDAS", "ventas": 3.6}],VEND=[{"vendedor": "OFICINA", "ventas": 11567049.3}, {"vendedor": "PAUTA PATRICIO", "ventas": 10000225.01}, {"vendedor": "JUAN FALCONI", "ventas": 9161190.85}, {"vendedor": "ESPINOZA NICOLAS", "ventas": 3131999.28}, {"vendedor": "REPUESTOS", "ventas": 2180.0}];
+const MES_L=["2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10"],MES_D=[1423402.9, 1752715.74, 1705475.52, 1599615.7, 1753612.57, 1125583.52, 1739324.34, 1134111.54, 1092728.53, 1337748.66, 1617272.83, 1613474.75, 1079247.23, 1454263.71, 1507357.56, 1661256.25, 1578440.09, 1803298.21, 1769302.91, 1803657.31, 2093699.9, 1217054.67];
+const AÑOS=[2024, 2025],VPANO=[17895066.6, 15967577.84];
+const LTV_B=[13801160.0, 7217418.0, 5903241.0, 5556707.0, 2330261.0, 1391952.0, 1195944.0, 1188447.0, 584032.0, 570744.0],LTV_R=[1328622.0, 2099614.0, 1713433.0, 1731771.0, 553208.0, 452200.0, 364654.0, 307376.0, 175658.0, 166600.0],LTV_3=[3985866.0, 6298842.0, 5140299.0, 5195313.0, 1659624.0, 1356600.0, 1093962.0, 922128.0, 526974.0, 499800.0];
+const MGD=[1107185.0, 1749678.0, 1427861.0, 1443142.0, 461006.0, 376834.0, 303879.0, 256147.0, 146382.0, 138833.0],MGP=[9.6, 29.1, 29.0, 31.2, 23.7, 32.5, 30.5, 25.9, 30.1, 29.2],NAMES=["CORPORACION JCEVCO", "LA GANGA R.C.A.  S", "MARCIMEX  S.A.", "UNNOPARTS S.A.", "FIBRO ACERO S.A.", "CORPORACION JARRIN", "MOTOPRAISE S.A.S.", "MOTORAUSTRO CIA. L", "MOTOPARTS CIA.LTDA", "ASANTECORP S.A"],MGCOL=["#D97706", "#185FA5", "#185FA5", "#1D9E75", "#D97706", "#1D9E75", "#1D9E75", "#185FA5", "#1D9E75", "#185FA5"];
+const avBg=['#DBEAFE','#D1FAE5','#EDE9FE','#FEE2E2','#FEF3C7','#DCFCE7','#FCE7F3','#DBEAFE','#D1FAE5','#EDE9FE'];
+const avTx=['#1e40af','#065f46','#4c1d95','#991b1b','#92400e','#14532d','#831843','#1e40af','#065f46','#4c1d95'];
+
 function st(id,el){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');}
-const MES_L=["2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10"];
-const MES_D=[1423402.9, 1752715.74, 1705475.52, 1599615.7, 1753612.57, 1125583.52, 1739324.34, 1134111.54, 1092728.53, 1337748.66, 1617272.83, 1613474.75, 1079247.23, 1454263.71, 1507357.56, 1661256.25, 1578440.09, 1803298.21, 1769302.91, 1803657.31, 2093699.9, 1217054.67];
-const CL=[{"cliente": "CORPORACION JCEVCORP CIA.", "localidad": "CUENCA", "total": 11500966.79, "facturas": 618, "costo": 10393781.67, "margen": 9.6, "ltv": 13801160.0, "ltv_real": 1328622.0, "ltv_3anos": 3985866.0, "margen_d": 1107185.0}, {"cliente": "LA GANGA R.C.A.  S.A.", "localidad": "GUAYAQUIL", "total": 6014515.0, "facturas": 280, "costo": 4264836.88, "margen": 29.1, "ltv": 7217418.0, "ltv_real": 2099614.0, "ltv_3anos": 6298842.0, "margen_d": 1749678.0}, {"cliente": "MARCIMEX  S.A.", "localidad": "CUENCA", "total": 4919367.84, "facturas": 100, "costo": 3491507.27, "margen": 29.0, "ltv": 5903241.0, "ltv_real": 1713433.0, "ltv_3anos": 5140299.0, "margen_d": 1427861.0}, {"cliente": "UNNOPARTS S.A.", "localidad": "CUENCA", "total": 4630589.0, "facturas": 686, "costo": 3187446.91, "margen": 31.2, "ltv": 5556707.0, "ltv_real": 1731771.0, "ltv_3anos": 5195313.0, "margen_d": 1443142.0}, {"cliente": "FIBRO ACERO S.A.", "localidad": "CUENCA", "total": 1941884.16, "facturas": 1621, "costo": 1480877.91, "margen": 23.7, "ltv": 2330261.0, "ltv_real": 553208.0, "ltv_3anos": 1659624.0, "margen_d": 461006.0}, {"cliente": "CORPORACION JARRIN HERRERA CIA", "localidad": "AZUAY", "total": 1159960.03, "facturas": 72, "costo": 783126.43, "margen": 32.5, "ltv": 1391952.0, "ltv_real": 452200.0, "ltv_3anos": 1356600.0, "margen_d": 376834.0}, {"cliente": "MOTOPRAISE S.A.S.", "localidad": "AZUAY", "total": 996619.98, "facturas": 617, "costo": 692741.31, "margen": 30.5, "ltv": 1195944.0, "ltv_real": 364654.0, "ltv_3anos": 1093962.0, "margen_d": 303879.0}, {"cliente": "MOTORAUSTRO CIA. LTDA.", "localidad": "CUENCA", "total": 990372.6, "facturas": 722, "costo": 734226.08, "margen": 25.9, "ltv": 1188447.0, "ltv_real": 307376.0, "ltv_3anos": 922128.0, "margen_d": 256147.0}, {"cliente": "MOTOPARTS CIA.LTDA", "localidad": "CUENCA", "total": 486693.33, "facturas": 283, "costo": 340311.82, "margen": 30.1, "ltv": 584032.0, "ltv_real": 175658.0, "ltv_3anos": 526974.0, "margen_d": 146382.0}, {"cliente": "ASANTECORP S.A", "localidad": "GUAYAQUIL", "total": 475620.0, "facturas": 104, "costo": 336787.05, "margen": 29.2, "ltv": 570744.0, "ltv_real": 166600.0, "ltv_3anos": 499800.0, "margen_d": 138833.0}];
-const PR=[{"articulo": "MOTO DAYTONA DY150 WOR", "ventas": 3725433.46, "costo": 2767622.3, "margen_pct": 25.7}, {"articulo": "MOTO DAYTONA DY200 WIN", "ventas": 3331517.98, "costo": 2506356.79, "margen_pct": 24.8}, {"articulo": "MOTO DAYTONA DY150 CRU", "ventas": 1824541.1, "costo": 1448090.44, "margen_pct": 20.6}, {"articulo": "MOTO DAYTONA DY250 SCO", "ventas": 1818768.76, "costo": 1354654.57, "margen_pct": 25.5}, {"articulo": "MOTO DAYTONA DY180 S1 ", "ventas": 1732317.61, "costo": 1373123.17, "margen_pct": 20.7}, {"articulo": "MOTO DAYTONA DY250 GP-", "ventas": 1478722.89, "costo": 1104375.08, "margen_pct": 25.3}, {"articulo": "MOTO DAYTONA DY200 CRU", "ventas": 1478474.11, "costo": 1150035.71, "margen_pct": 22.2}, {"articulo": "MOTO DAYTONA DY250 WOL", "ventas": 1402328.48, "costo": 1142894.53, "margen_pct": 18.5}, {"articulo": "MOTO DAYTONA DY250 TEK", "ventas": 1359322.67, "costo": 1133790.09, "margen_pct": 16.6}, {"articulo": "MOTO DAYTONA DY200 SCO", "ventas": 1359258.84, "costo": 1038394.41, "margen_pct": 23.6}];
-const LO=[{"localidad": "CUENCA", "ventas": 24486114.25}, {"localidad": "GUAYAQUIL", "ventas": 7169176.65}, {"localidad": "AZUAY", "ventas": 2157836.17}, {"localidad": "BUCAY", "ventas": 36015.6}, {"localidad": "MANTA", "ventas": 13425.0}, {"localidad": "DURAN", "ventas": 49.56}, {"localidad": "QUITO", "ventas": 23.6}, {"localidad": "ESMERALDAS", "ventas": 3.6}];
-const VE=[{"vendedor": "OFICINA", "ventas": 11567049.3}, {"vendedor": "PAUTA PATRICIO", "ventas": 10000225.01}, {"vendedor": "JUAN FALCONI", "ventas": 9161190.85}, {"vendedor": "ESPINOZA NICOLAS", "ventas": 3131999.28}, {"vendedor": "REPUESTOS", "ventas": 2180.0}];
-const LTV_B=[13801160.0, 7217418.0, 5903241.0, 5556707.0, 2330261.0, 1391952.0, 1195944.0, 1188447.0, 584032.0, 570744.0];
-const LTV_R=[1328622.0, 2099614.0, 1713433.0, 1731771.0, 553208.0, 452200.0, 364654.0, 307376.0, 175658.0, 166600.0];
-const LTV_3=[3985866.0, 6298842.0, 5140299.0, 5195313.0, 1659624.0, 1356600.0, 1093962.0, 922128.0, 526974.0, 499800.0];
-const MGD=[1107185.0, 1749678.0, 1427861.0, 1443142.0, 461006.0, 376834.0, 303879.0, 256147.0, 146382.0, 138833.0];
-const MGP=[9.6, 29.1, 29.0, 31.2, 23.7, 32.5, 30.5, 25.9, 30.1, 29.2];
-const NAMES=["CORPORACION JCE", "LA GANGA R.C.A.", "MARCIMEX  S.A.", "UNNOPARTS S.A.", "FIBRO ACERO S.A", "CORPORACION JAR", "MOTOPRAISE S.A.", "MOTORAUSTRO CIA", "MOTOPARTS CIA.L", "ASANTECORP S.A"];
-const MGCOL=["#D97706", "#185FA5", "#185FA5", "#1D9E75", "#D97706", "#1D9E75", "#1D9E75", "#185FA5", "#1D9E75", "#185FA5"];
-const PARCUM=[34.0, 51.7, 66.3, 79.9, 85.7, 89.1, 92.0, 95.0, 96.4, 97.8];
-const avBg=["#DBEAFE", "#D1FAE5", "#EDE9FE", "#FEE2E2", "#FEF3C7", "#DCFCE7", "#FCE7F3", "#DBEAFE", "#D1FAE5", "#EDE9FE"];
-const avTx=["#1e40af", "#065f46", "#4c1d95", "#991b1b", "#92400e", "#14532d", "#831843", "#1e40af", "#065f46", "#4c1d95"];
-const TV=33862644.436;
-const MAX_LTV=15181276;
-const MAX_MGD=1924645;
-const MAX_PROD=4097976;
-const VPANO=[17895066.6, 15967577.84];
-const AÑOS=["2024", "2025"];
+function fx(v){if(v===0)return '$0';if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M';if(v>=1000)return '$'+(v/1000).toFixed(0)+'K';return '$'+v;}
 
-const maxT=CL[0].total;
-const clEl=document.getElementById('cliList');
-CL.forEach((c,i)=>{
-  const ini=(c.cliente||'').split(' ').slice(0,2).map(w=>w[0]).join('');
-  const mgBadge=c.margen<15?'🔴':c.margen<25?'🟡':'🟢';
-  clEl.innerHTML+=`<div class="crow"><div class="crk">${i+1}</div><div class="cav" style="background:${avBg[i]};color:${avTx[i]}">${ini}</div><div class="ci"><div class="cn">${c.cliente}</div><div class="cm">${c.localidad} · ${c.facturas} facturas · ${mgBadge} ${c.margen}% margen</div><div class="cb"><div class="cf" style="width:${(c.total/maxT*100).toFixed(0)}%"></div></div></div><div class="cv"><div class="ct2">${fx(c.total)}</div><div class="clt">LTV ${fx(c.ltv)}/año</div></div></div>`;
+// Clientes list
+const maxT=CLIENTES[0]?.total||1;
+const cl=document.getElementById('cliList');
+CLIENTES.forEach((c,i)=>{
+  const ini=(c.cliente||'??').split(' ').slice(0,2).map(w=>w[0]).join('');
+  cl.innerHTML+=`<div class="crow"><div class="crk">${i+1}</div><div class="cav" style="background:${avBg[i]};color:${avTx[i]}">${ini}</div><div class="ci"><div class="cn">${c.cliente}</div><div class="cm">${c.localidad} · ${c.facturas} facturas · ${c.margen}% margen</div><div class="cb"><div class="cf" style="width:${(c.total/maxT*100).toFixed(0)}%"></div></div></div><div class="cv"><div class="ct2">${fx(c.total)}</div><div class="clt">LTV ${fx(c.ltv)}/año</div></div></div>`;
 });
 
+// Pareto list
+const totV=CLIENTES.reduce((a,c)=>a+c.total,0);
+let cum=0;const paretoAcum=[];
 const pColors=['#185FA5','#185FA5','#185FA5','#185FA5','#185FA5','#378ADD','#378ADD','#85B7EB','#85B7EB','#B5D4F4'];
-const plEl=document.getElementById('parList');
-CL.forEach((c,i)=>{
-  const pct=c.total/TV*100;
-  plEl.innerHTML+=`<div class="pr"><div class="pl">${c.cliente.substring(0,18)}</div><div class="pbw"><div class="pbi" style="width:${(pct/(CL[0].total/TV*100)*100).toFixed(0)}%;background:${pColors[i]}"><span class="pp">${pct.toFixed(1)}%</span></div></div><div class="pa">${fx(c.total)}</div></div>`;
+const pl=document.getElementById('parList');
+CLIENTES.forEach((c,i)=>{const pct=c.total/totV*100;cum+=pct;paretoAcum.push(parseFloat(cum.toFixed(1)));pl.innerHTML+=`<div class="pr"><div class="pl">${(c.cliente||'').substring(0,18)}</div><div class="pbw"><div class="pbi" style="width:${(pct/(CLIENTES[0].total/totV*100)*100).toFixed(0)}%;background:${pColors[i]}"><span class="pp">${pct.toFixed(1)}%</span></div></div><div class="pa">${fx(c.total)}</div></div>`;
 });
 
-new Chart(document.getElementById('cMes'),{type:'bar',data:{labels:MES_L,datasets:[{label:'Ventas',data:MES_D,backgroundColor:MES_L.map(l=>l.startsWith('2024')?'#85B7EB':'#185FA5'),borderRadius:4},{type:'line',label:'Tendencia',data:MES_D,borderColor:'#1D9E75',pointBackgroundColor:'#1D9E75',pointRadius:3,fill:false,tension:.4,borderDash:[4,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:gC},ticks:{color:tC,callback:v=>v===0?'$0':'$'+(v/1e6).toFixed(1)+'M'}},x:{grid:{display:false},ticks:{color:tC,maxTicksLimit:12}}}}});
-
-new Chart(document.getElementById('cAno'),{type:'bar',data:{labels:AÑOS.map((a,i)=>i===AÑOS.length-1?a+' (10m)':a),datasets:[{label:'Ventas',data:VPANO,backgroundColor:AÑOS.map((_,i)=>i===0?'#85B7EB':'#185FA5'),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.y)}}},scales:{y:{grid:{color:gC},ticks:{color:tC,callback:v=>v===0?'$0':'$'+(v/1e6).toFixed(1)+'M'}},x:{grid:{display:false},ticks:{color:tC}}}}});
-
-const locT=LO.reduce((a,l)=>a+l.ventas,0);
-new Chart(document.getElementById('cLoc'),{type:'doughnut',data:{labels:LO.map(l=>l.localidad+' '+((l.ventas/locT)*100).toFixed(0)+'%'),datasets:[{data:LO.map(l=>l.ventas),backgroundColor:['#185FA5','#1D9E75','#534AB7','#D85A30','#D1D5DB'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}});
-
-const veT=VE.reduce((a,v)=>a+v.ventas,0);
-new Chart(document.getElementById('cVend'),{type:'doughnut',data:{labels:VE.map(v=>v.vendedor.split(' ')[0]+' '+((v.ventas/veT)*100).toFixed(0)+'%'),datasets:[{data:VE.map(v=>v.ventas),backgroundColor:['#185FA5','#D85A30','#1D9E75','#534AB7'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}});
-
-
-
-
-
-
-
-
-
-new Chart(document.getElementById('cPar'),{type:'line',data:{labels:CL.map((_,i)=>(i+1)+''),datasets:[{label:'% acumulado',data:PARCUM,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,.08)',pointBackgroundColor:'#185FA5',fill:true,tension:.3},{label:'80%',data:CL.map(()=>80),borderColor:'#DC2626',borderDash:[6,4],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},x:{grid:{display:false},ticks:{color:tC}}}}});
-
-
-// Grafico productos - usando SVG manual para garantizar renderizado
-(function(){
-  const canvas = document.getElementById('cProd');
-  const parent = canvas.parentElement;
-  canvas.style.display = 'none';
-  
-  const labels = PR.map(p=>p.articulo);
-  const ventas = PR.map(p=>p.ventas);
-  const costos = PR.map(p=>p.costo);
-  const maxVal = Math.max(...ventas) * 1.05;
-  const H = 480, W = parent.offsetWidth || 700;
-  const marginL = 170, marginR = 20, marginT = 10, marginB = 40;
-  const chartW = W - marginL - marginR;
-  const rowH = (H - marginT - marginB) / labels.length;
-  const barH = rowH * 0.35;
-  
-  function fmtV(v){if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M';if(v>=1000)return '$'+(v/1000).toFixed(0)+'K';return '$'+v;}
-  
-  let svgRows = '';
-  labels.forEach((lbl,i)=>{
-    const y = marginT + i*rowH;
-    const wV = (ventas[i]/maxVal)*chartW;
-    const wC = (costos[i]/maxVal)*chartW;
-    svgRows += `
-      <text x="${marginL-6}" y="${y+rowH/2+4}" text-anchor="end" font-size="11" fill="#555">${lbl.substring(0,22)}</text>
-      <rect x="${marginL}" y="${y+rowH/2-barH*1.1}" width="${wV}" height="${barH}" rx="3" fill="#185FA5"/>
-      <rect x="${marginL}" y="${y+rowH/2+1}" width="${wC}" height="${barH}" rx="3" fill="#85B7EB"/>
-      <text x="${marginL+wV+4}" y="${y+rowH/2-barH*0.6}" font-size="10" fill="#185FA5" font-weight="600">${fmtV(ventas[i])}</text>`;
-  });
-  
-  // X axis ticks
-  let ticks = '';
-  const nTicks = 5;
-  for(let i=0;i<=nTicks;i++){
-    const v = maxVal*i/nTicks;
-    const x = marginL + (v/maxVal)*chartW;
-    ticks += `<line x1="${x}" y1="${marginT}" x2="${x}" y2="${H-marginB}" stroke="rgba(0,0,0,.07)" stroke-width="1"/>`;
-    ticks += `<text x="${x}" y="${H-marginB+14}" text-anchor="middle" font-size="10" fill="#6b7280">${fmtV(v)}</text>`;
-  }
-  
-  const svg = `<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-    ${ticks}${svgRows}
-    <line x1="${marginL}" y1="${marginT}" x2="${marginL}" y2="${H-marginB}" stroke="#e5e7eb" stroke-width="1"/>
-  </svg>`;
-  
-  const div = document.createElement('div');
-  div.innerHTML = svg;
-  parent.appendChild(div);
-})();
-
-
-// ---- GRAFICOS HORIZONTALES CON CHART.JS ----
-// Restaurar visibilidad de canvas por si acaso
-['cLTV','cMgD','cMgP','cProd'].forEach(id=>{
-  const c = document.getElementById(id);
-  if(c) c.style.display = '';
-});
-
-// Destruir charts anteriores si existen
-Chart.instances && Object.values(Chart.instances).forEach(ch=>{
-  if(['cLTV','cMgD','cMgP','cProd'].includes(ch.canvas.id)) ch.destroy();
-});
-
-new Chart(document.getElementById('cProd'),{
-  type:'bar',
-  data:{
-    labels:PR.map(p=>p.articulo),
-    datasets:[
-      {label:'Ventas netas',data:PR.map(p=>p.ventas),backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false},
-      {label:'Costo',data:PR.map(p=>p.costo),backgroundColor:'#85B7EB',borderRadius:3,borderSkipped:false}
-    ]
-  },
-  options:{
-    indexAxis:'y',
-    responsive:true,
-    maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)}}
-    },
-    scales:{
-      x:{
-        beginAtZero:true,
-        grid:{color:gC},
-        ticks:{color:tC,callback:fx}
-      },
-      y:{
-        grid:{display:false},
-        ticks:{color:tC,font:{size:11}}
-      }
-    }
-  }
-});
-
-new Chart(document.getElementById('cLTV'),{
-  type:'bar',
-  data:{
-    labels:NAMES,
-    datasets:[
-      {label:'LTV básico',data:LTV_B,backgroundColor:'#B5D4F4',borderRadius:3,borderSkipped:false},
-      {label:'LTV real',data:LTV_R,backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false},
-      {label:'LTV 3 años',data:LTV_3,backgroundColor:'#1D9E75',borderRadius:3,borderSkipped:false}
-    ]
-  },
-  options:{
-    indexAxis:'y',
-    responsive:true,
-    maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)}}
-    },
-    scales:{
-      x:{
-        beginAtZero:true,
-        grid:{color:gC},
-        ticks:{color:tC,callback:fx}
-      },
-      y:{
-        grid:{display:false},
-        ticks:{color:tC,font:{size:10}}
-      }
-    }
-  }
-});
-
-new Chart(document.getElementById('cMgD'),{
-  type:'bar',
-  data:{
-    labels:NAMES,
-    datasets:[
-      {label:'Margen $',data:MGD,backgroundColor:MGCOL,borderRadius:3,borderSkipped:false}
-    ]
-  },
-  options:{
-    indexAxis:'y',
-    responsive:true,
-    maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)+' ('+MGP[ctx.dataIndex]+'%)'}}
-    },
-    scales:{
-      x:{
-        beginAtZero:true,
-        grid:{color:gC},
-        ticks:{color:tC,callback:fx}
-      },
-      y:{
-        grid:{display:false},
-        ticks:{color:tC,font:{size:10}}
-      }
-    }
-  }
-});
-
-new Chart(document.getElementById('cMgP'),{
-  type:'bar',
-  data:{
-    labels:NAMES,
-    datasets:[
-      {label:'% margen',data:MGP,backgroundColor:MGCOL,borderRadius:3,borderSkipped:false}
-    ]
-  },
-  options:{
-    indexAxis:'y',
-    responsive:true,
-    maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      tooltip:{callbacks:{label:ctx=>ctx.parsed.x.toFixed(1)+'% margen'}}
-    },
-    scales:{
-      x:{
-        beginAtZero:true,
-        max:40,
-        grid:{color:gC},
-        ticks:{color:tC,callback:v=>v+'%'}
-      },
-      y:{
-        grid:{display:false},
-        ticks:{color:tC,font:{size:10}}
-      }
-    }
-  }
-});
+// Charts
+new Chart(document.getElementById('cMes'),{type:'bar',data:{labels:MES_L,datasets:[{label:'Ventas',data:MES_D,backgroundColor:'#185FA5',borderRadius:4},{type:'line',label:'Tendencia',data:MES_D,borderColor:'#1D9E75',pointBackgroundColor:'#1D9E75',pointRadius:3,fill:false,tension:.4,borderDash:[4,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:gC},ticks:{color:tC,callback:v=>v===0?'$0':'$'+(v/1e6).toFixed(1)+'M'}},x:{grid:{display:false},ticks:{color:tC}}}}});
+new Chart(document.getElementById('cAno'),{type:'bar',data:{labels:AÑOS.map(String),datasets:[{label:'Ventas por año',data:VPANO,backgroundColor:['#B5D4F4','#185FA5','#0C447C'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:gC},ticks:{color:tC,callback:v=>v===0?'$0':'$'+(v/1e6).toFixed(1)+'M'}},x:{grid:{display:false},ticks:{color:tC}}}}});
+const locL=LOC.map(l=>l.localidad),locD=LOC.map(l=>l.ventas),locT=locD.reduce((a,b)=>a+b,0);
+new Chart(document.getElementById('cLoc'),{type:'doughnut',data:{labels:locL.map((l,i)=>l+' '+((locD[i]/locT)*100).toFixed(0)+'%'),datasets:[{data:locD,backgroundColor:['#185FA5','#1D9E75','#534AB7','#D85A30','#D1D5DB'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}});
+const vendT=VEND.reduce((a,v)=>a+v.ventas,0);
+new Chart(document.getElementById('cVend'),{type:'doughnut',data:{labels:VEND.map(v=>v.vendedor+' '+((v.ventas/vendT)*100).toFixed(0)+'%'),datasets:[{data:VEND.map(v=>v.ventas),backgroundColor:['#185FA5','#D85A30','#1D9E75','#534AB7','#D97706'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:tC,padding:8}}}}});
+new Chart(document.getElementById('cLTV'),{type:'bar',indexAxis:'y',data:{labels:NAMES,datasets:[{label:'LTV básico',data:LTV_B,backgroundColor:'#B5D4F4',borderRadius:3},{label:'LTV real',data:LTV_R,backgroundColor:'#185FA5',borderRadius:3},{label:'LTV 3 años',data:LTV_3,backgroundColor:'#1D9E75',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)}}},scales:{x:{type:'linear',min:0,grid:{color:gC},ticks:{color:tC,callback:fx}},y:{grid:{display:false},ticks:{color:tC,font:{size:10}}}}}});
+new Chart(document.getElementById('cMgD'),{type:'bar',indexAxis:'y',data:{labels:NAMES,datasets:[{label:'Margen $',data:MGD,backgroundColor:MGCOL,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)+' ('+MGP[ctx.dataIndex]+'%)'}}},scales:{x:{type:'linear',min:0,grid:{color:gC},ticks:{color:tC,callback:fx}},y:{grid:{display:false},ticks:{color:tC,font:{size:10}}}}}});
+new Chart(document.getElementById('cMgP'),{type:'bar',indexAxis:'y',data:{labels:NAMES,datasets:[{label:'% margen',data:MGP,backgroundColor:MGCOL,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.x.toFixed(1)}% margen`}}},scales:{x:{type:'linear',min:0,max:40,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},y:{grid:{display:false},ticks:{color:tC,font:{size:10}}}}}});
+new Chart(document.getElementById('cPar'),{type:'line',data:{labels:CLIENTES.map((_,i)=>(i+1)+''),datasets:[{label:'% acumulado',data:paretoAcum,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,.08)',pointBackgroundColor:'#185FA5',fill:true,tension:.3},{label:'80%',data:CLIENTES.map(()=>80),borderColor:'#DC2626',borderDash:[6,4],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,grid:{color:gC},ticks:{color:tC,callback:v=>v+'%'}},x:{grid:{display:false},ticks:{color:tC}}}}});
+new Chart(document.getElementById('cProd'),{type:'bar',indexAxis:'y',data:{labels:PRODS.map(p=>p.articulo.substring(0,25)),datasets:[{label:'Ventas',data:PRODS.map(p=>p.ventas),backgroundColor:'#185FA5',borderRadius:3},{label:'Costo',data:PRODS.map(p=>p.costo),backgroundColor:'#85B7EB',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fx(ctx.parsed.x)}}},scales:{x:{type:'linear',min:0,grid:{color:gC},ticks:{color:tC,callback:fx}},y:{grid:{display:false},ticks:{color:tC,font:{size:11}}}}}});
 </script>
 </body>
 </html>
